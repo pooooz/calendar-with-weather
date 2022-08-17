@@ -24,7 +24,9 @@
   "paths": {
     "containers": ["./containers"],
     "components": ["./components"],
-    "pages": ["./pages"]
+    "screens": ["./screens"],
+    "assets": ["./assets"],
+    "utils": ["./utils"]
   },
   "include": [
     "src"

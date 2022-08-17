@@ -4,7 +4,9 @@
     "paths": {
       "components/*" : ["./components/*"],
       "containers/*": ["./containers/*"],
-      "pages/*": ["./pages/*"]
+      "screens/*": ["./screens/*"],
+      "assets/*": ["./assets/*"],
+      "utils/*": ["./utils/*"]
     }
   }
 }
