@@ -1,6 +1,13 @@
 import { OPENWEATHER_API_KEY } from '../constants';
 
-export const fetchLocationName = async (lat: number, lon: number) => {
+interface IData {
+  name: string;
+  country: string;
+}
+export const fetchLocationName = async (
+  lat: number,
+  lon: number
+): Promise<Array<IData>> => {
   const data = await fetch(
     `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${OPENWEATHER_API_KEY}`
   );
