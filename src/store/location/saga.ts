@@ -54,7 +54,6 @@ function* handleLocation(
         action.payload.lon
       )
     ) {
-      console.log('Попал');
       const locationInfo = yield call(
         fetchLocationName,
         action.payload.lat,
