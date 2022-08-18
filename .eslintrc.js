@@ -33,6 +33,7 @@ module.exports = {
           ['screens', './screens'],
           ['assets', './assets'],
           ['utils', './utils'],
+          ['store', './store'],
         ],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
@@ -78,5 +79,6 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'no-param-reassign': 0,
   },
 };
