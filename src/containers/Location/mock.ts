@@ -1,4 +1,4 @@
-export const isoCountries: { [key: string]: string } = {
+const isoCountries: { [key: string]: string } = {
   AF: 'Afghanistan',
   AX: 'Aland Islands',
   AL: 'Albania',
@@ -245,3 +245,7 @@ export const isoCountries: { [key: string]: string } = {
   ZM: 'Zambia',
   ZW: 'Zimbabwe',
 };
+
+export const isoCountriesMap = new Map<string, string>(
+  Object.entries(isoCountries)
+);

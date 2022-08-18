@@ -12,3 +12,7 @@ export const Country = styled.h3`
   font-size: 18px;
   font-weight: 600;
 `;
+
+export const ErrorHeading = styled.h4`
+  color: red;
+`;

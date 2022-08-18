@@ -6,7 +6,8 @@
       "containers/*": ["./containers/*"],
       "screens/*": ["./screens/*"],
       "assets/*": ["./assets/*"],
-      "utils/*": ["./utils/*"]
+      "utils/*": ["./utils/*"],
+      "store/*": ["./store/*"]
     }
   }
 }

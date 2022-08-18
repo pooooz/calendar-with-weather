@@ -1,30 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { fetchLocationName, getCurrentGeolocation } from 'utils';
-import { LocationWrap, Place, Country } from './styled';
+import { getCurrentGeolocation } from 'utils';
 
-import { getCountryName } from './helpers';
+import { getLocation } from 'store/location/actions';
+import { useAppSelector } from 'store/hooks';
+
+import { LocationWrap, Place, Country, ErrorHeading } from './styled';
 
 export const Location = () => {
-  const [{ country, place }, setLocation] = useState({
-    country: 'Belarus',
-    place: 'Minsk',
-  });
+  const { country, place, error } = useAppSelector((store) => store.location);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getCurrentGeolocation(async (pos) => {
       const { coords } = pos;
-      const data = await fetchLocationName(coords.latitude, coords.longitude);
-      console.log(data);
-      setLocation({
-        place: data[0].name,
-        country: getCountryName(data[0].country),
-      });
+      dispatch(
+        getLocation({
+          lat: coords.latitude,
+          lon: coords.longitude,
+        })
+      );
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <LocationWrap>
+      {error ? <ErrorHeading>{error}</ErrorHeading> : null}
       <Place>{place}</Place>
       <Country>{country}</Country>
     </LocationWrap>
