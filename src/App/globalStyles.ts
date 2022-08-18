@@ -5,6 +5,8 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: #FFFFFF;
+    font-weight: 300;
   }
   
   html, body {
@@ -13,7 +15,7 @@ export const GlobalStyles = createGlobalStyle`
   
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    font-family: 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -23,5 +25,9 @@ export const GlobalStyles = createGlobalStyle`
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+  }
+  
+  #root {
+    height: 100%;
   }
 `;

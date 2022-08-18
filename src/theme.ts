@@ -1,0 +1,29 @@
+import { DefaultTheme } from 'styled-components';
+
+const size: { [key: string]: string } = {
+  mobileS: '320px',
+  mobileM: '375px',
+  mobileL: '425px',
+  tablet: '768px',
+  laptop: '1024px',
+  laptopL: '1440px',
+  desktop: '1920px',
+};
+
+export interface IDevice {
+  [key: string]: string;
+}
+export const device: IDevice = {
+  mobileS: `(max-width: ${size.mobileS})`,
+  mobileM: `(max-width: ${size.mobileM})`,
+  mobileL: `(max-width: ${size.mobileL})`,
+  tablet: `(max-width: ${size.tablet})`,
+  laptop: `(max-width: ${size.laptop})`,
+  laptopL: `(max-width: ${size.laptopL})`,
+  desktop: `(max-width: ${size.desktop})`,
+  desktopL: `(max-width: ${size.desktop})`,
+};
+
+export const defaultTheme: DefaultTheme = {
+  device,
+};

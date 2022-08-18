@@ -30,7 +30,9 @@ module.exports = {
         map: [
           ['components', './components'],
           ['containers', './containers'],
-          ['pages', './pages'],
+          ['screens', './screens'],
+          ['assets', './assets'],
+          ['utils', './utils'],
         ],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
