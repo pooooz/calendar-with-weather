@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { getCurrentGeolocation } from 'utils';
 
-import { getLocation } from 'store/location/actions';
+import { getLocation } from 'store/sagas/actions';
 import { useAppSelector } from 'store/hooks';
 
 import { LocationWrap, Place, Country, ErrorHeading } from './styled';

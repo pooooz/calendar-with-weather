@@ -80,5 +80,6 @@ module.exports = {
       },
     ],
     'no-param-reassign': 0,
+    'prefer-destructuring': 0,
   },
 };

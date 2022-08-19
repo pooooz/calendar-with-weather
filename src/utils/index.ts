@@ -1,4 +1,20 @@
-import { OPENWEATHER_API_KEY } from '../constants';
+import { selectWeatherInfo } from 'utils/helpers';
+import { OPENWEATHER_API_KEY, TOMORROWIO_API_KEY } from '../constants';
+
+export const getCurrentGeolocation = (
+  callback: (pos: GeolocationPosition) => void
+) => {
+  const options: PositionOptions = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+  };
+
+  const onError: PositionErrorCallback = (err) => {
+    throw new Error(`ERROR(${err.code}): ${err.message}`);
+  };
+  navigator.geolocation.getCurrentPosition(callback, onError, options);
+};
 
 export interface LocationData {
   name: string;
@@ -18,17 +34,18 @@ export const fetchLocationName = async (
   return json[0];
 };
 
-export const getCurrentGeolocation = (
-  callback: (pos: GeolocationPosition) => void
-) => {
-  const options: PositionOptions = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0,
+export const fetchWeatherInfo = async (lat: number, lon: number) => {
+  const options = {
+    method: 'GET',
+    headers: { Accept: 'application/json', 'Accept-Encoding': 'gzip' },
   };
+  const fields = 'fields=temperature&fields=weatherCodeFullDay';
 
-  const onError: PositionErrorCallback = (err) => {
-    throw new Error(`ERROR(${err.code}): ${err.message}`);
-  };
-  navigator.geolocation.getCurrentPosition(callback, onError, options);
+  const data = await fetch(
+    `https://api.tomorrow.io/v4/timelines?location=${lat}%2C%20${lon}&${fields}&units=metric&timesteps=1d&startTime=now&endTime=nowPlus6d&apikey=${TOMORROWIO_API_KEY}`,
+    options
+  );
+  const weatherInfo: WeatherData = await data.json();
+
+  return selectWeatherInfo(weatherInfo);
 };

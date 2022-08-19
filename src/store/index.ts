@@ -12,7 +12,8 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { rootSaga } from './saga';
+import { weatherReducer } from 'store/weather';
+import { rootSaga } from './sagas';
 import { locationReducer } from './location';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -23,7 +24,10 @@ const persistConfig = {
   storage,
 };
 
-const rootReducer = combineReducers({ location: locationReducer });
+const rootReducer = combineReducers({
+  location: locationReducer,
+  weather: weatherReducer,
+});
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
