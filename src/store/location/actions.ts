@@ -1,5 +1,6 @@
+const getLocationType = 'location/getLocation';
 export const getLocation = (payload: { lat: number; lon: number }) => ({
-  type: 'location/getLocation',
+  type: getLocationType,
   payload,
 });
-getLocation.type = 'location/getLocation';
+getLocation.type = getLocationType;

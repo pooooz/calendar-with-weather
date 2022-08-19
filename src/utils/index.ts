@@ -1,13 +1,13 @@
 import { OPENWEATHER_API_KEY } from '../constants';
 
-export interface IData {
+export interface LocationData {
   name: string;
   country: string;
 }
 export const fetchLocationName = async (
   lat: number,
   lon: number
-): Promise<IData> => {
+): Promise<LocationData> => {
   const data = await fetch(
     `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${OPENWEATHER_API_KEY}`
   );

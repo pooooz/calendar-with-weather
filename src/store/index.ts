@@ -12,7 +12,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { rootSaga } from 'store/sagas';
+import { rootSaga } from './saga';
 import { locationReducer } from './location';
 
 const sagaMiddleware = createSagaMiddleware();

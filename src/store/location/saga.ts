@@ -9,17 +9,12 @@ import {
 } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 
-import { fetchLocationName, IData } from 'utils/index';
+import { fetchLocationName, LocationData } from 'utils/index';
 import { isoCountriesMap } from 'containers/Location/mock';
 
 import { getLocation } from 'store/location/actions';
 import { selectCoordinates } from 'store/location/selectors';
-import {
-  locationState,
-  setLocation,
-  setLocationPayload,
-  setLocationWithErrorPayload,
-} from './index';
+import { locationState, setLocation, setLocationPayload } from './index';
 
 const shouldFetchData = (
   prevLat: number,
@@ -27,7 +22,7 @@ const shouldFetchData = (
   lat: number,
   lon: number
 ) => {
-  if (Math.abs(lat - prevLat) >= 0.5 || Math.abs(lon - prevLon) >= 0.5) {
+  if (lat !== prevLat || lon !== prevLon) {
     return true;
   }
   return false;
@@ -36,11 +31,11 @@ const shouldFetchData = (
 function* handleLocation(
   action: PayloadAction<{ lat: number; lon: number }>
 ): Generator<
-  | CallEffect<IData>
-  | PutEffect<PayloadAction<setLocationPayload | setLocationWithErrorPayload>>
+  | CallEffect<LocationData>
+  | PutEffect<PayloadAction<setLocationPayload>>
   | SelectEffect,
   void,
-  IData | locationState
+  LocationData | locationState
 > {
   try {
     const coordinates = yield select(selectCoordinates);
@@ -67,8 +62,9 @@ function* handleLocation(
         setLocation({
           lat: action.payload.lat,
           lon: action.payload.lon,
-          place: (locationInfo as IData).name,
+          place: (locationInfo as LocationData).name,
           country: locationCountry,
+          error: '',
         })
       );
     }
@@ -78,8 +74,6 @@ function* handleLocation(
     if (error instanceof Error) {
       yield put(
         setLocation({
-          lat: action.payload.lat,
-          lon: action.payload.lon,
           error: error.message,
         })
       );
