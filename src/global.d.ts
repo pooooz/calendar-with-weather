@@ -5,14 +5,14 @@ declare global {
     startTime: string;
     values: {
       temperature: number;
-      weatherCodeFullDay: number;
+      weatherCodeDay: number;
     };
   }
 
   interface DerivedDayData {
     weekday: string;
     temperature: number;
-    weatherCodeFullDay: number;
+    weatherCodeDay: number;
     description: string;
   }
 

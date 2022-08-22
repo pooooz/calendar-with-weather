@@ -9,7 +9,7 @@ const initialState: weatherState = {
     {
       weekday: 'Thu',
       temperature: 27,
-      weatherCodeFullDay: 1001,
+      weatherCodeDay: 10010,
       description: 'Sunny',
     },
   ],
