@@ -18,12 +18,7 @@ const shouldFetchData = (
   prevLon: number,
   lat: number,
   lon: number
-) => {
-  if (Math.abs(lat - prevLat) >= 0.5 || Math.abs(lon - prevLon) >= 0.5) {
-    return true;
-  }
-  return false;
-};
+) => lat !== prevLat || lon !== prevLon;
 
 export function* handleLocation(
   action: PayloadAction<{ lat: number; lon: number }>

@@ -59,7 +59,7 @@ module.exports = {
     'react/prop-types': 0,
     'linebreak-style': ['error', 'unix'],
     quotes: ['warn', 'single'],
-    semi: ['warn', 'always'],
+    semi: ['error', 'always'],
     'import/prefer-default-export': 'off',
     'no-plusplus': 0,
     'max-classes-per-file': 0,
