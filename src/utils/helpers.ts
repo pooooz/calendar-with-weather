@@ -1,6 +1,6 @@
 import { weatherCodeDayMap } from 'store/sagas/mocks';
 
-export const selectWeatherInfo = (weatherInfo: WeatherData) => {
+export const extractWeatherInfo = (weatherInfo: WeatherData) => {
   const basicData = weatherInfo.data.timelines[0].intervals;
 
   return basicData.map((day) => {
@@ -16,3 +16,21 @@ export const selectWeatherInfo = (weatherInfo: WeatherData) => {
     };
   });
 };
+
+export const getIconPath = (weatherCodeDay: number, description: string) =>
+  `${weatherCodeDay}_${description
+    .split(/\s|,/)
+    .map((elem) => {
+      switch (elem.toLowerCase()) {
+        case '': {
+          return '';
+        }
+        case 'sunny': {
+          return '';
+        }
+        default: {
+          return `${elem.toLowerCase()}_`;
+        }
+      }
+    })
+    .join('')}large.png`;

@@ -1,4 +1,4 @@
-import { selectWeatherInfo } from 'utils/helpers';
+import { extractWeatherInfo } from 'utils/helpers';
 import { OPENWEATHER_API_KEY, TOMORROWIO_API_KEY } from '../constants';
 
 export const getCurrentGeolocation = (
@@ -51,6 +51,9 @@ export const fetchWeatherInfo = async (lat: number, lon: number) => {
       case 401: {
         throw new Error('Unable to recognize token');
       }
+      case 429: {
+        throw new Error('Too many requests');
+      }
       default: {
         throw new Error('Unable to fetch data');
       }
@@ -58,5 +61,5 @@ export const fetchWeatherInfo = async (lat: number, lon: number) => {
   }
 
   const weatherInfo: WeatherData = await data.json();
-  return selectWeatherInfo(weatherInfo);
+  return extractWeatherInfo(weatherInfo);
 };

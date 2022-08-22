@@ -81,5 +81,6 @@ module.exports = {
     ],
     'no-param-reassign': 0,
     'prefer-destructuring': 0,
+    'react/require-default-props': 0,
   },
 };
