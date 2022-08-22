@@ -1,20 +1,40 @@
-import { call, CallEffect, SelectEffect } from 'redux-saga/effects';
+import {
+  call,
+  CallEffect,
+  put,
+  PutEffect,
+  SelectEffect,
+} from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 
 import { fetchWeatherInfo } from 'utils/index';
+import { setWeather, setWeatherPayload } from 'store/weather';
 
-interface DayData {
-  weekday: string;
-  temperature: number;
-  weatherCodeFullDay: number;
-}
 export function* handleWeather(
   action: PayloadAction<{ lat: number; lon: number }>
-): Generator<SelectEffect | CallEffect<DayData[]>, void, DayData[]> {
-  const weatherInfo = yield call(
-    fetchWeatherInfo,
-    action.payload.lat,
-    action.payload.lon
-  );
-  console.log(weatherInfo);
+): Generator<
+  | SelectEffect
+  | CallEffect<DerivedDayData[]>
+  | PutEffect<PayloadAction<setWeatherPayload>>,
+  void,
+  DerivedDayData[]
+> {
+  try {
+    const weatherInfo = yield call(
+      fetchWeatherInfo,
+      action.payload.lat,
+      action.payload.lon
+    );
+    yield put(setWeather({ weather: weatherInfo, error: '' }));
+  } catch (error) {
+    console.error(error);
+    console.error('Unable to fetch data');
+    if (error instanceof Error) {
+      yield put(
+        setWeather({
+          error: error.message,
+        })
+      );
+    }
+  }
 }

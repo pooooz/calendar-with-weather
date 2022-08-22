@@ -56,6 +56,7 @@ export function* handleLocation(
           lon: action.payload.lon,
           place: (locationInfo as LocationData).name,
           country: locationCountry,
+          error: '',
         })
       );
     }
@@ -65,8 +66,6 @@ export function* handleLocation(
     if (error instanceof Error) {
       yield put(
         setLocation({
-          lat: action.payload.lat,
-          lon: action.payload.lon,
           error: error.message,
         })
       );

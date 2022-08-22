@@ -95,7 +95,7 @@ const weatherCodeDescription = {
   '8000': 'Thunderstorm',
 };
 
-export const weatherCodeFullDay = new Map<string, string>(
+export const weatherCodeFullDayMap = new Map<string, string>(
   Object.entries(weatherCodeDescription)
 );
 

@@ -1,7 +1,7 @@
 export {};
 
 declare global {
-  interface DayWeather {
+  interface DayData {
     startTime: string;
     values: {
       temperature: number;
@@ -9,11 +9,18 @@ declare global {
     };
   }
 
+  interface DerivedDayData {
+    weekday: string;
+    temperature: number;
+    weatherCodeFullDay: number;
+    description: string;
+  }
+
   interface Timeline {
     startTime: string;
     endTime: string;
     timestep: string;
-    intervals: Array<DayWeather>;
+    intervals: Array<DayData>;
   }
 
   interface WeatherData {

@@ -1,4 +1,4 @@
-const getLocationType = 'location/getLocation';
+const getLocationType = 'location/getLocationAndWeather';
 export const getLocation = (payload: { lat: number; lon: number }) => ({
   type: getLocationType,
   payload,

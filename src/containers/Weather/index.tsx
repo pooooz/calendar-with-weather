@@ -1,7 +1,16 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+
+import { useAppSelector } from 'store/hooks';
+import { selectWeatherInfo } from 'store/weather/selectors';
+import { ErrorHeading } from './styled';
 
 export const Weather = () => {
-  const dispatch = useDispatch();
-  return <h1>Hello everyone!</h1>;
+  const { weekInfo, error } = useAppSelector(selectWeatherInfo);
+  console.log(weekInfo);
+  return (
+    <>
+      {error && <ErrorHeading>{error}</ErrorHeading>}
+      <h1>Hello everyOne </h1>
+    </>
+  );
 };

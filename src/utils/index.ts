@@ -45,7 +45,18 @@ export const fetchWeatherInfo = async (lat: number, lon: number) => {
     `https://api.tomorrow.io/v4/timelines?location=${lat}%2C%20${lon}&${fields}&units=metric&timesteps=1d&startTime=now&endTime=nowPlus6d&apikey=${TOMORROWIO_API_KEY}`,
     options
   );
-  const weatherInfo: WeatherData = await data.json();
 
+  if (!data.ok) {
+    switch (data.status) {
+      case 401: {
+        throw new Error('Unable to recognize token');
+      }
+      default: {
+        throw new Error('Unable to fetch data');
+      }
+    }
+  }
+
+  const weatherInfo: WeatherData = await data.json();
   return selectWeatherInfo(weatherInfo);
 };
