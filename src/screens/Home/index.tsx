@@ -1,30 +1,34 @@
 import React from 'react';
 
+import { useAppSelector } from 'store/hooks';
+
+import { selectTodayWeatherDescription } from 'store/weather/selectors';
+import { getBackgroundNameByDescription } from 'utils/helpers';
+
 import { Clock } from 'containers/Clock';
 import { Location } from 'containers/Location';
-import { CalendarEvents } from 'containers/CalendarEvents';
 import { Weather } from 'containers/Weather';
-import { splashScreens, backgrounds } from './mocks';
+import { CalendarEvents } from 'containers/CalendarEvents';
 
-import {
-  DataWrap,
-  Header,
-  WeatherBackground,
-  PaddingWrap,
-  Footer,
-} from './styled';
+import { splashScreens, backgrounds } from './constants';
 
-export const Home = () => (
-  <WeatherBackground background={backgrounds.rainy}>
-    <DataWrap background={splashScreens.rainy}>
-      <Header>
-        <Clock />
-        <Location />
-      </Header>
-      <CalendarEvents />
-      <Footer>
-        <Weather />
-      </Footer>
-    </DataWrap>
-  </WeatherBackground>
-);
+import { DataWrap, Header, WeatherBackground, Footer } from './styled';
+
+export const Home = () => {
+  const descriptionToday = useAppSelector(selectTodayWeatherDescription);
+  const imageName = getBackgroundNameByDescription(descriptionToday);
+  return (
+    <WeatherBackground background={backgrounds.get(imageName) || 'rainy'}>
+      <DataWrap background={splashScreens.get(imageName) || 'rainy'}>
+        <Header>
+          <Clock />
+          <Location />
+        </Header>
+        <CalendarEvents />
+        <Footer>
+          <Weather />
+        </Footer>
+      </DataWrap>
+    </WeatherBackground>
+  );
+};

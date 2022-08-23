@@ -42,7 +42,8 @@ export const fetchWeatherInfo = async (lat: number, lon: number) => {
   const fields = 'fields=temperature&fields=weatherCodeDay';
 
   const data = await fetch(
-    `https://api.tomorrow.io/v4/timelines?location=${lat}%2C%20${lon}&${fields}&units=metric&timesteps=1d&startTime=now&endTime=nowPlus6d&apikey=${TOMORROWIO_API_KEY}`,
+    `https://api.tomorrow.io/v4/timelines?location=${lat}%2C%20${lon}&${fields}&units=metric&` +
+      `timesteps=1d&startTime=now&endTime=nowPlus6d&apikey=${TOMORROWIO_API_KEY}`,
     options
   );
 

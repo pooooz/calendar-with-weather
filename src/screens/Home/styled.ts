@@ -48,8 +48,6 @@ export const DataWrap = styled.section<DataWrapProps>`
   }
 `;
 
-export const PaddingWrap = styled.div``;
-
 export const Footer = styled.footer`
   padding: 1% 7%;
   background: rgba(7, 4, 31, 0.57);

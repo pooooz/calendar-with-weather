@@ -12,9 +12,9 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { weatherReducer } from 'store/weather';
-import { rootSaga } from './sagas';
 import { locationReducer } from './location';
+import { weatherReducer } from './weather';
+import { rootSaga } from './sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 

@@ -2,17 +2,19 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface weatherState {
   weekInfo: Array<DerivedDayData>;
+  today: string;
   error: string;
 }
 const initialState: weatherState = {
   weekInfo: [
     {
-      weekday: 'Thu',
+      weekday: 'Tue',
       temperature: 27,
-      weatherCodeDay: 10010,
-      description: 'Sunny',
+      weatherCodeDay: 10000,
+      description: 'Clear, sunny',
     },
   ],
+  today: 'Clear, sunny',
   error: '',
 };
 
@@ -25,7 +27,10 @@ const weatherSlice = createSlice({
   initialState,
   reducers: {
     setWeather: (state, action: PayloadAction<setWeatherPayload>) => {
-      state.weekInfo = action.payload.weather || state.weekInfo;
+      if (action.payload.weather) {
+        state.weekInfo = action.payload.weather;
+        state.today = action.payload.weather[0].description;
+      }
       if (action.payload.error === '') {
         state.error = '';
       } else {

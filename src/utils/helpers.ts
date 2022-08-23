@@ -31,3 +31,14 @@ export const getIconPath = (weatherCodeDay: number, description: string) =>
       }
     })
     .join('')}`;
+
+export const getBackgroundNameByDescription = (description: string) => {
+  const descriptionInLowerCase = description.toLowerCase();
+  const cases = ['clear', 'snow', 'cloudy', 'rainy'];
+  for (let i = 0; i < cases.length; i++) {
+    if (new RegExp(cases[i]).test(descriptionInLowerCase)) {
+      return cases[i];
+    }
+  }
+  return 'clear';
+};
