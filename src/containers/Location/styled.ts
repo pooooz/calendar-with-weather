@@ -2,6 +2,11 @@ import styled from 'styled-components';
 
 export const LocationWrap = styled.div`
   text-align: right;
+
+  @media screen and ${({ theme }) => theme.device.tablet} {
+    text-align: center;
+    margin: 30px 0 0 0;
+  }
 `;
 
 export const Place = styled.h2`

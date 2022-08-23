@@ -3,13 +3,14 @@ import { useDispatch } from 'react-redux';
 
 import { getCurrentGeolocation } from 'utils';
 
-import { getLocation } from 'store/location/actions';
+import { getLocation } from 'store/sagas/actions';
 import { useAppSelector } from 'store/hooks';
 
+import { selectCountryAndPlace } from 'store/location/selectors';
 import { LocationWrap, Place, Country, ErrorHeading } from './styled';
 
 export const Location = () => {
-  const { country, place, error } = useAppSelector((store) => store.location);
+  const { country, place, error } = useAppSelector(selectCountryAndPlace);
   const dispatch = useDispatch();
 
   useEffect(() => {
