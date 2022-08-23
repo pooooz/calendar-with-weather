@@ -25,12 +25,9 @@ export const getIconPath = (weatherCodeDay: number, description: string) =>
         case '': {
           return '';
         }
-        case 'sunny': {
-          return '';
-        }
         default: {
           return `${elem.toLowerCase()}_`;
         }
       }
     })
-    .join('')}large.png`;
+    .join('')}`;

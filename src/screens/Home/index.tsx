@@ -6,7 +6,13 @@ import { CalendarEvents } from 'containers/CalendarEvents';
 import { Weather } from 'containers/Weather';
 import { splashScreens, backgrounds } from './mocks';
 
-import { DataWrap, Header, WeatherBackground } from './styled';
+import {
+  DataWrap,
+  Header,
+  WeatherBackground,
+  PaddingWrap,
+  Footer,
+} from './styled';
 
 export const Home = () => (
   <WeatherBackground background={backgrounds.rainy}>
@@ -16,9 +22,9 @@ export const Home = () => (
         <Location />
       </Header>
       <CalendarEvents />
-      <footer>
+      <Footer>
         <Weather />
-      </footer>
+      </Footer>
     </DataWrap>
   </WeatherBackground>
 );
