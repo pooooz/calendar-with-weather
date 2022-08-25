@@ -1,4 +1,5 @@
-import { extractWeatherInfo } from 'utils/helpers';
+import { extractEventsInfo, extractWeatherInfo } from 'utils/helpers';
+import { apiCalendar } from 'services/googleCalendar';
 import { OPENWEATHER_API_KEY, TOMORROWIO_API_KEY } from '../constants';
 
 export const getCurrentGeolocation = (
@@ -63,4 +64,23 @@ export const fetchWeatherInfo = async (lat: number, lon: number) => {
 
   const weatherInfo: WeatherData = await data.json();
   return extractWeatherInfo(weatherInfo);
+};
+
+export const fetchTodayEvents = async () => {
+  const today = new Date(new Date().setUTCHours(0, 0, 0, 0));
+  const tomorrow = new Date(new Date(today).setDate(today.getDate() + 1));
+
+  const data = await apiCalendar.listEvents({
+    timeMin: today.toISOString(),
+    timeMax: tomorrow.toISOString(),
+    singleEvents: true,
+    orderBy: 'startTime',
+  });
+
+  console.log(data);
+
+  const eventsInfo: EventsData = JSON.parse(data.body);
+
+  console.log(eventsInfo);
+  return extractEventsInfo(eventsInfo);
 };

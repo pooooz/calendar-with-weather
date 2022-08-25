@@ -34,6 +34,7 @@ module.exports = {
           ['assets', './assets'],
           ['utils', './utils'],
           ['store', './store'],
+          ['services', './services'],
         ],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },

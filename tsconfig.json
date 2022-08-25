@@ -27,7 +27,8 @@
     "screens": ["./screens"],
     "assets": ["./assets"],
     "utils": ["./utils"],
-    "store": ["./store"]
+    "store": ["./store"],
+    "services": ["./services"]
   },
   "include": [
     "src"

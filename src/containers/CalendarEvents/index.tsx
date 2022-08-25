@@ -1,19 +1,66 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { useAppSelector } from 'store/hooks';
+import { getEvents } from 'store/sagas/actions';
+import { selectEvents } from 'store/calendar/selectors';
+
+import { apiCalendar } from 'services/googleCalendar';
 
 import { List } from 'components/List';
-import { events } from './mocks';
+import { EventItem } from 'components/EventItem';
+
+import {
+  EventsWrap,
+  ButtonArea,
+  AuthButton,
+  GetEventsButton,
+  ErrorHeading,
+} from './styled';
 
 export const CalendarEvents = () => {
-  console.log(events);
+  const { events, error } = useAppSelector(selectEvents);
+  const dispatch = useDispatch();
+
+  const requestEvents = () => {
+    dispatch(getEvents());
+  };
+
+  const handleSignIn = () => {
+    apiCalendar.handleAuthClick();
+  };
+
+  const handleSignOut = () => {
+    apiCalendar.handleSignoutClick();
+  };
+
+  useEffect(() => {
+    apiCalendar.onLoadCallback = () => {
+      apiCalendar.handleAuthClick();
+    };
+  });
+
   return (
-    <List
-      items={events}
-      renderItem={({ time, text }) => (
-        <li key={text}>
-          {time} - {text}
-        </li>
-      )}
-      direction="column"
-    />
+    <EventsWrap>
+      <ButtonArea>
+        <GetEventsButton type="button" onClick={requestEvents}>
+          GET NEWS
+        </GetEventsButton>
+        <div>
+          <AuthButton onClick={handleSignIn} isSignIn>
+            Sign in
+          </AuthButton>
+          <AuthButton onClick={handleSignOut}>Sign out</AuthButton>
+        </div>
+      </ButtonArea>
+      {error && <ErrorHeading>{error}</ErrorHeading>}
+      <List
+        items={events}
+        renderItem={(eventInfo: EventItemData) => (
+          <EventItem eventInfo={eventInfo} key={eventInfo.id} />
+        )}
+        direction="column"
+      />
+    </EventsWrap>
   );
 };

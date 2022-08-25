@@ -17,6 +17,15 @@ export const extractWeatherInfo = (weatherInfo: WeatherData) => {
   });
 };
 
+export const extractEventsInfo = (
+  eventsInfo: EventsData
+): Array<EventItemData> =>
+  eventsInfo.items.map(({ start, summary = '(Without summary)', id }) => ({
+    start,
+    summary,
+    id,
+  }));
+
 export const getIconPath = (weatherCodeDay: number, description: string) =>
   `${weatherCodeDay}_${description
     .split(/\s|,/)

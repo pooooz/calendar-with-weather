@@ -1,9 +1,11 @@
 import * as Effects from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 
-import { getLocation } from 'store/sagas/actions';
+import { getEvents, getLocation } from 'store/sagas/actions';
+
 import { handleLocation } from 'store/sagas/location';
 import { handleWeather } from 'store/sagas/weather';
+import { handleEvents } from 'store/sagas/calendar';
 
 // ;)
 const fork: any = Effects.fork;
@@ -21,6 +23,11 @@ export function* watchLocationSaga() {
   yield takeLatest(getLocation.type, handleLocationAndWeather);
 }
 
+export function* watchCalendarSaga() {
+  yield takeLatest(getEvents.type, handleEvents);
+}
+
 export function* rootSaga() {
-  yield Effects.all([fork(watchLocationSaga)]);
+  yield Effects.spawn(watchLocationSaga);
+  yield Effects.spawn(watchCalendarSaga);
 }
