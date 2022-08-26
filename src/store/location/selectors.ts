@@ -1,17 +1,8 @@
-export const selectCoordinates = (state: {
-  location: { latitude: number; longitude: number };
-}) => ({
+import { RootState } from 'store/index';
+
+export const selectCoordinates = (state: RootState) => ({
   latitude: state.location.latitude,
   longitude: state.location.longitude,
 });
 
-export const selectCountryAndPlace = (state: {
-  location: {
-    country: string;
-    place: string;
-    error: string;
-  };
-}) => {
-  const { country, place, error } = state.location;
-  return { country, place, error };
-};
+export const selectCountryAndPlace = (state: RootState) => state.location;

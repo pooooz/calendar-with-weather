@@ -54,13 +54,17 @@ export const CalendarEvents = () => {
         </div>
       </ButtonArea>
       {error && <ErrorHeading>{error}</ErrorHeading>}
-      <List
-        items={events}
-        renderItem={(eventInfo: EventItemData) => (
-          <EventItem eventInfo={eventInfo} key={eventInfo.id} />
-        )}
-        direction="column"
-      />
+      {events.length ? (
+        <List
+          items={events}
+          renderItem={(eventInfo: EventItemData) => (
+            <EventItem eventInfo={eventInfo} key={eventInfo.id} />
+          )}
+          direction="column"
+        />
+      ) : (
+        <h3>No events for today</h3>
+      )}
     </EventsWrap>
   );
 };
