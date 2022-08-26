@@ -77,10 +77,6 @@ export const fetchTodayEvents = async () => {
     orderBy: 'startTime',
   });
 
-  console.log(data);
-
   const eventsInfo: EventsData = JSON.parse(data.body);
-
-  console.log(eventsInfo);
   return extractEventsInfo(eventsInfo);
 };

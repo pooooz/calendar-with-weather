@@ -2,6 +2,15 @@ import { call, put, CallEffect, PutEffect } from 'redux-saga/effects';
 import { fetchTodayEvents } from 'utils/index';
 import { setEvents } from 'store/calendar';
 
+interface CustomError {
+  result: {
+    error: {
+      code: number;
+      message: string;
+    };
+  };
+}
+
 export function* handleEvents(): Generator<
   CallEffect<Array<EventItemData>> | PutEffect,
   void,
@@ -13,6 +22,10 @@ export function* handleEvents(): Generator<
   } catch (error) {
     if (error instanceof Error) {
       yield put(setEvents({ error: error.message }));
+    } else {
+      yield put(
+        setEvents({ error: (error as CustomError).result.error.message })
+      );
     }
   }
 }
