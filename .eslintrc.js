@@ -30,7 +30,7 @@ module.exports = {
         map: [
           ['components', './components'],
           ['containers', './containers'],
-          ['screens', './screens'],
+          ['pages', './pages'],
           ['assets', './assets'],
           ['utils', './utils'],
           ['store', './store'],

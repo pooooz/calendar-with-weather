@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { shallowEqual, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import { getCurrentGeolocation } from 'utils';
+import { getCurrentGeolocation } from 'utils/index';
 
 import { getLocation } from 'store/sagas/actions';
 import { useAppSelector } from 'store/hooks';

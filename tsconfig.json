@@ -24,7 +24,7 @@
   "paths": {
     "containers": ["./containers"],
     "components": ["./components"],
-    "screens": ["./screens"],
+    "pages": ["./pages"],
     "assets": ["./assets"],
     "utils": ["./utils"],
     "store": ["./store"],

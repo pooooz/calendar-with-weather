@@ -3,12 +3,12 @@ import React from 'react';
 import { useAppSelector } from 'store/hooks';
 
 import { selectTodayWeatherDescription } from 'store/weather/selectors';
-import { getBackgroundNameByDescription } from 'utils/helpers';
+import { getBackgroundNameByDescription } from 'utils/index';
 
-import { Clock } from 'containers/Clock';
-import { Location } from 'containers/Location';
-import { Weather } from 'containers/Weather';
-import { CalendarEvents } from 'containers/CalendarEvents';
+import { Clock } from 'components/Clock';
+import { Location } from 'components/Location';
+import { Weather } from 'components/Weather';
+import { CalendarEvents } from 'components/CalendarEvents';
 
 import { splashScreens, backgrounds } from './constants';
 

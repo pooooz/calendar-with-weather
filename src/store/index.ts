@@ -12,7 +12,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { calendarReducer } from 'store/calendar';
+import { calendarReducer } from './calendar';
 import { locationReducer } from './location';
 import { weatherReducer } from './weather';
 

@@ -1,6 +1,4 @@
-import { extractEventsInfo, extractWeatherInfo } from 'utils/helpers';
-import { apiCalendar } from 'services/googleCalendar';
-import { OPENWEATHER_API_KEY, TOMORROWIO_API_KEY } from '../constants';
+import { weatherCodeDayMap } from 'store/sagas/mocks';
 
 export const getCurrentGeolocation = (
   callback: (pos: GeolocationPosition) => void
@@ -17,66 +15,54 @@ export const getCurrentGeolocation = (
   navigator.geolocation.getCurrentPosition(callback, onError, options);
 };
 
-export interface LocationData {
-  name: string;
-  country: string;
-}
-export const fetchLocationName = async (
-  lat: number,
-  lon: number
-): Promise<LocationData> => {
-  const data = await fetch(
-    `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${OPENWEATHER_API_KEY}`
-  );
-  if (!data.ok) {
-    throw new Error(data.statusText);
-  }
-  const json = await data.json();
-  return json[0];
+export const extractWeatherInfo = (weatherInfo: WeatherData) => {
+  const basicData = weatherInfo.data.timelines[0].intervals;
+
+  return basicData.map((day) => {
+    const weatherDescription = weatherCodeDayMap.get(
+      day.values.weatherCodeDay.toString()
+    );
+    return {
+      weekday: new Date(day.startTime).toLocaleDateString('en-US', {
+        weekday: 'short',
+      }),
+      ...day.values,
+      description: weatherDescription || 'Unknown',
+    };
+  });
 };
 
-export const fetchWeatherInfo = async (lat: number, lon: number) => {
-  const options = {
-    method: 'GET',
-    headers: { Accept: 'application/json', 'Accept-Encoding': 'gzip' },
-  };
-  const fields = 'fields=temperature&fields=weatherCodeDay';
+export const extractEventsInfo = (
+  eventsInfo: EventsData
+): Array<EventItemData> =>
+  eventsInfo.items.map(({ start, summary = '(Without summary)', id }) => ({
+    start,
+    summary,
+    id,
+  }));
 
-  const data = await fetch(
-    `https://api.tomorrow.io/v4/timelines?location=${lat}%2C%20${lon}&${fields}&units=metric&` +
-      `timesteps=1d&startTime=now&endTime=nowPlus6d&apikey=${TOMORROWIO_API_KEY}`,
-    options
-  );
+export const getIconPath = (weatherCodeDay: number, description: string) =>
+  `${weatherCodeDay}_${description
+    .split(/\s|,/)
+    .map((elem) => {
+      switch (elem.toLowerCase()) {
+        case '': {
+          return '';
+        }
+        default: {
+          return `${elem.toLowerCase()}_`;
+        }
+      }
+    })
+    .join('')}`;
 
-  if (!data.ok) {
-    switch (data.status) {
-      case 401: {
-        throw new Error('Unable to recognize token');
-      }
-      case 429: {
-        throw new Error('Too many requests');
-      }
-      default: {
-        throw new Error('Unable to fetch data');
-      }
+export const getBackgroundNameByDescription = (description: string) => {
+  const descriptionInLowerCase = description.toLowerCase();
+  const cases = ['clear', 'snow', 'cloudy', 'rainy'];
+  for (let i = 0; i < cases.length; i++) {
+    if (new RegExp(cases[i]).test(descriptionInLowerCase)) {
+      return cases[i];
     }
   }
-
-  const weatherInfo: WeatherData = await data.json();
-  return extractWeatherInfo(weatherInfo);
-};
-
-export const fetchTodayEvents = async () => {
-  const today = new Date(new Date().setUTCHours(0, 0, 0, 0));
-  const tomorrow = new Date(new Date(today).setDate(today.getDate() + 1));
-
-  const data = await apiCalendar.listEvents({
-    timeMin: today.toISOString(),
-    timeMax: tomorrow.toISOString(),
-    singleEvents: true,
-    orderBy: 'startTime',
-  });
-
-  const eventsInfo: EventsData = JSON.parse(data.body);
-  return extractEventsInfo(eventsInfo);
+  return 'clear';
 };

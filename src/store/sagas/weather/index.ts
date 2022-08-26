@@ -7,7 +7,7 @@ import {
 } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 
-import { fetchWeatherInfo } from 'utils/index';
+import { fetchWeatherInfo } from 'services/tomorrowIo';
 import { setWeather, setWeatherPayload } from 'store/weather';
 
 export function* handleWeather(
