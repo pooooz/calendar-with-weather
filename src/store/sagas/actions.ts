@@ -1,5 +1,7 @@
 const getLocationType = 'location/getLocationAndWeather';
-export const getLocation = (payload: { lat: number; lon: number }) => ({
+export const getLocation = (
+  payload: { lat: number; lon: number } | { place: string }
+) => ({
   type: getLocationType,
   payload,
 });

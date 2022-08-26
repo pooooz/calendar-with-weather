@@ -21,7 +21,12 @@ const shouldFetchData = (
 ) => lat !== prevLat || lon !== prevLon;
 
 export function* handleLocation(
-  action: PayloadAction<{ lat: number; lon: number }>
+  action: PayloadAction<{
+    lat: number;
+    lon: number;
+    name?: string;
+    country?: string;
+  }>
 ): Generator<
   | CallEffect<LocationData>
   | PutEffect<PayloadAction<setLocationPayload>>
@@ -33,28 +38,43 @@ export function* handleLocation(
     const coordinates = yield select(selectCoordinates);
     const { latitude, longitude } = coordinates as locationState;
 
-    if (
-      shouldFetchData(
-        latitude,
-        longitude,
-        action.payload.lat,
-        action.payload.lon
-      )
-    ) {
-      const locationInfo = yield call(
-        fetchLocationName,
-        action.payload.lat,
-        action.payload.lon
-      );
+    if (!action.payload.name && !action.payload.country) {
+      if (
+        shouldFetchData(
+          latitude,
+          longitude,
+          action.payload.lat,
+          action.payload.lon
+        )
+      ) {
+        const locationInfo = yield call(
+          fetchLocationName,
+          action.payload.lat,
+          action.payload.lon
+        );
 
+        const locationCountry =
+          isoCountriesMap.get(locationInfo.country) || locationInfo.country;
+
+        yield put(
+          setLocation({
+            lat: action.payload.lat,
+            lon: action.payload.lon,
+            place: (locationInfo as LocationData).name,
+            country: locationCountry,
+            error: '',
+          })
+        );
+      }
+    } else {
       const locationCountry =
-        isoCountriesMap.get(locationInfo.country) || locationInfo.country;
-
+        isoCountriesMap.get(action.payload.country as string) ||
+        action.payload.country;
       yield put(
         setLocation({
           lat: action.payload.lat,
           lon: action.payload.lon,
-          place: (locationInfo as LocationData).name,
+          place: action.payload.name,
           country: locationCountry,
           error: '',
         })

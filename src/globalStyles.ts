@@ -52,6 +52,7 @@ export const GlobalStyles = createGlobalStyle`
   }
   
   #root {
+    position: relative;
     height: 100%;
   }
 `;
