@@ -26,15 +26,18 @@ const weatherSlice = createSlice({
   name: 'weather',
   initialState,
   reducers: {
-    setWeather: (state, action: PayloadAction<setWeatherPayload>) => {
-      if (action.payload.weather) {
-        state.weekInfo = action.payload.weather;
-        state.today = action.payload.weather[0].description;
+    setWeather: (
+      state,
+      { payload: { error, weather } }: PayloadAction<setWeatherPayload>
+    ) => {
+      if (weather) {
+        state.weekInfo = weather;
+        state.today = weather[0].description;
       }
-      if (action.payload.error === '') {
+      if (error === '') {
         state.error = '';
       } else {
-        state.error = action.payload.error || state.error;
+        state.error = error || state.error;
       }
     },
   },

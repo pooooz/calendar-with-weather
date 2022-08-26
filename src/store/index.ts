@@ -12,8 +12,10 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
+import { calendarReducer } from './calendar';
 import { locationReducer } from './location';
 import { weatherReducer } from './weather';
+
 import { rootSaga } from './sagas';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -22,11 +24,13 @@ const persistConfig = {
   key: 'root',
   version: 1,
   storage,
+  blacklist: ['calendar'],
 };
 
 const rootReducer = combineReducers({
   location: locationReducer,
   weather: weatherReducer,
+  calendar: calendarReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

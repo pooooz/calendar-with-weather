@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getIconPath } from 'utils/helpers';
+import { getIconPath } from 'utils/index';
 import {
   WeatherItemWrapLi,
   WeatherItemWrapDiv,

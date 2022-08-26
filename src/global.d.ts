@@ -26,4 +26,17 @@ declare global {
   interface WeatherData {
     data: { timelines: Array<Timeline> };
   }
+
+  interface EventItemData {
+    start: {
+      dateTime: string;
+      timeZone: string;
+    };
+    id: string;
+    summary?: string;
+  }
+
+  interface EventsData {
+    items: Array<EventItemData>;
+  }
 }

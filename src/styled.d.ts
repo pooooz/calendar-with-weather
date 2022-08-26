@@ -1,5 +1,5 @@
 import 'styled-components';
-import { IDevice } from './theme';
+import { IDevice } from './globalStyles';
 
 declare module 'styled-components' {
   export interface DefaultTheme {

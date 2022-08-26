@@ -27,15 +27,23 @@ const locationSlice = createSlice({
   name: 'location',
   initialState,
   reducers: {
-    setLocation: (state, action: PayloadAction<setLocationPayload>) => {
-      state.latitude = action.payload.lat || state.latitude;
-      state.longitude = action.payload.lon || state.longitude;
-      state.place = action.payload.place || state.place;
-      state.country = action.payload.country || state.country;
-      if (action.payload.error === '') {
+    setLocation: (
+      state,
+      {
+        payload: { lat, lon, place, country, error },
+      }: PayloadAction<setLocationPayload>
+    ) => {
+      if (lat && lon && place && country) {
+        state.latitude = lat;
+        state.longitude = lon;
+        state.place = place;
+        state.country = country;
+      }
+
+      if (error === '') {
         state.error = '';
       } else {
-        state.error = action.payload.error || state.error;
+        state.error = error || state.error;
       }
     },
   },
