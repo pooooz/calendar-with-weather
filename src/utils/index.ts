@@ -1,4 +1,4 @@
-import { weatherCodeDayMap } from 'store/sagas/mocks';
+import { weatherCodeDayMap } from '../constants';
 
 export const getCurrentGeolocation = (
   callback: (pos: GeolocationPosition) => void

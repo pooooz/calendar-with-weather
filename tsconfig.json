@@ -28,6 +28,7 @@
     "assets": ["./assets"],
     "utils": ["./utils"],
     "store": ["./store"],
+    "constants": ["./constants"],
     "services": ["./services"]
   },
   "include": [

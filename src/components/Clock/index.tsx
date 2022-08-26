@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { dateOptions, timeOptions } from './mock';
+import { dateOptions, timeOptions } from './constants';
 
 import { Time, DateString } from './styled';
 

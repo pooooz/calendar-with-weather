@@ -11,7 +11,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { fetchLocationName, LocationData } from 'services/openWeather';
 import { selectCoordinates } from 'store/location/selectors';
 import { locationState, setLocation, setLocationPayload } from 'store/location';
-import { isoCountriesMap } from '../mocks';
+import { isoCountriesMap } from 'constants/index';
 
 const shouldFetchData = (
   prevLat: number,
