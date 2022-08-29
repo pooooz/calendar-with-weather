@@ -2,26 +2,68 @@ import {
   call,
   CallEffect,
   put,
+  select,
   PutEffect,
   SelectEffect,
 } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 
-import { fetchWeatherInfo } from 'services/tomorrowIo';
-import { setWeather, setWeatherPayload } from 'store/weather';
+import { fetchWeatherInfoTomorrowIo } from 'services/tomorrowIo';
+import {
+  setService,
+  setWeather,
+  setWeatherPayload,
+  setServicePayload,
+} from 'store/weather';
+import { fetchWeatherInfoVisualCrossing } from 'services/visualCrossing';
+import { selectWeatherService } from 'store/weather/selectors';
 
 export function* handleWeather({
-  payload: { lat, lon },
-}: PayloadAction<{ lat: number; lon: number }>): Generator<
+  payload: { lat, lon, service },
+}: PayloadAction<{
+  lat: number;
+  lon: number;
+  service: WeatherServices;
+}>): Generator<
   | SelectEffect
   | CallEffect<DerivedDayData[]>
-  | PutEffect<PayloadAction<setWeatherPayload>>,
+  | PutEffect<
+      PayloadAction<setWeatherPayload> | PayloadAction<setServicePayload>
+    >,
   void,
-  DerivedDayData[]
+  DerivedDayData[] | string
 > {
   try {
-    const weatherInfo = yield call(fetchWeatherInfo, lat, lon);
-    yield put(setWeather({ weather: weatherInfo, error: '' }));
+    const usedService = service || (yield select(selectWeatherService));
+    switch (usedService) {
+      case 'TomorrowIo': {
+        const weatherInfo = yield call(fetchWeatherInfoTomorrowIo, lat, lon);
+        yield put(
+          setWeather({ weather: weatherInfo as DerivedDayData[], error: '' })
+        );
+        yield put(setService({ service: usedService }));
+        break;
+      }
+      case 'VisualCrossing': {
+        const weatherInfo = yield call(
+          fetchWeatherInfoVisualCrossing,
+          lat,
+          lon
+        );
+        yield put(
+          setWeather({ weather: weatherInfo as DerivedDayData[], error: '' })
+        );
+        yield put(setService({ service: usedService }));
+        break;
+      }
+      default: {
+        yield put(
+          setWeather({
+            error: 'Unsupported resource specified',
+          })
+        );
+      }
+    }
   } catch (error) {
     console.error(error);
     console.error('Unable to fetch data');

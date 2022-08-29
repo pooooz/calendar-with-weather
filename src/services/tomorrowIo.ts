@@ -1,7 +1,7 @@
-import { extractWeatherInfo } from 'utils/index';
+import { extractWeatherInfoTomorrowIo } from 'utils/index';
 import { TOMORROWIO_API_KEY } from '../constants';
 
-export const fetchWeatherInfo = async (lat: number, lon: number) => {
+export const fetchWeatherInfoTomorrowIo = async (lat: number, lon: number) => {
   const options = {
     method: 'GET',
     headers: { Accept: 'application/json', 'Accept-Encoding': 'gzip' },
@@ -28,6 +28,6 @@ export const fetchWeatherInfo = async (lat: number, lon: number) => {
     }
   }
 
-  const weatherInfo: WeatherData = await data.json();
-  return extractWeatherInfo(weatherInfo);
+  const weatherInfo: WeatherDataTomorrowIo = await data.json();
+  return extractWeatherInfoTomorrowIo(weatherInfo);
 };

@@ -15,7 +15,9 @@ export const getCurrentGeolocation = (
   navigator.geolocation.getCurrentPosition(callback, onError, options);
 };
 
-export const extractWeatherInfo = (weatherInfo: WeatherData) => {
+export const extractWeatherInfoTomorrowIo = (
+  weatherInfo: WeatherDataTomorrowIo
+) => {
   const basicData = weatherInfo.data.timelines[0].intervals;
 
   return basicData.map((day) => {
@@ -32,6 +34,20 @@ export const extractWeatherInfo = (weatherInfo: WeatherData) => {
   });
 };
 
+export const extractWeatherInfoVisualCrossing = (
+  weatherInfo: WeatherDataVisualCrossing
+): DerivedDayData[] => {
+  const basicData = weatherInfo.days;
+  return basicData.map((day) => ({
+    weekday: new Date(day.datetime).toLocaleDateString('en-US', {
+      weekday: 'short',
+    }),
+    temperature: day.temp,
+    description: day.description,
+    icon: day.icon,
+  }));
+};
+
 export const extractEventsInfo = (
   eventsInfo: EventsData
 ): Array<EventItemData> =>
@@ -40,6 +56,25 @@ export const extractEventsInfo = (
     summary,
     id,
   }));
+
+export const getIconPath = (
+  service: keyof typeof WeatherServices,
+  iconName: string | number | undefined,
+  isLarge: boolean
+) => {
+  switch (service) {
+    case 'TomorrowIo': {
+      if (isLarge) return `../img/icons/${service}/${iconName}@2x.png`;
+      return `../img/icons/${service}/${iconName}.png`;
+    }
+    case 'VisualCrossing': {
+      return `../img/icons/${service}/${iconName}.svg`;
+    }
+    default: {
+      return '../img/icons/unexpected.png';
+    }
+  }
+};
 
 export const getBackgroundNameByDescription = (description: string) => {
   const descriptionInLowerCase = description.toLowerCase();

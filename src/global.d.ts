@@ -1,7 +1,12 @@
 export {};
 
 declare global {
-  interface DayData {
+  enum WeatherServices {
+    TomorrowIo = 'TomorrowIo',
+    VisualCrossing = 'VisualCrossing',
+  }
+
+  interface DayDataTomorrowIo {
     startTime: string;
     values: {
       temperature: number;
@@ -9,22 +14,34 @@ declare global {
     };
   }
 
-  interface DerivedDayData {
-    weekday: string;
-    temperature: number;
-    weatherCodeDay: number;
-    description: string;
-  }
-
   interface Timeline {
     startTime: string;
     endTime: string;
     timestep: string;
-    intervals: Array<DayData>;
+    intervals: Array<DayDataTomorrowIo>;
   }
 
-  interface WeatherData {
+  interface WeatherDataTomorrowIo {
     data: { timelines: Array<Timeline> };
+  }
+
+  interface DayDataVisualCrossing {
+    datetime: string;
+    temp: number;
+    description: string;
+    icon: string;
+  }
+
+  interface WeatherDataVisualCrossing {
+    days: Array<DayDataVisualCrossing>;
+  }
+
+  interface DerivedDayData {
+    weekday: string;
+    temperature: number;
+    description: string;
+    weatherCodeDay?: number;
+    icon?: string;
   }
 
   interface EventItemData {

@@ -8,6 +8,7 @@ import { getBackgroundNameByDescription } from 'utils/index';
 import { Clock } from 'components/Clock';
 import { Location } from 'components/Location';
 import { Weather } from 'components/Weather';
+import { WeatherServicesToggle } from 'components/WeatherServicesToggle';
 import { CalendarEvents } from 'components/CalendarEvents';
 
 import { splashScreens, backgrounds } from './constants';
@@ -25,6 +26,7 @@ export const Home = () => {
           <Location />
         </Header>
         <CalendarEvents />
+        <WeatherServicesToggle />
         <Footer>
           <Weather />
         </Footer>

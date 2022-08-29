@@ -1,10 +1,12 @@
 import * as Effects from 'redux-saga/effects';
+import { CallEffect, put, PutEffect } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 
 import {
   getEvents,
   getLocationAndWeather,
   getLocationAndWeatherByPlace,
+  toggleService,
 } from 'store/sagas/actions';
 
 import { handleLocation } from 'store/sagas/location';
@@ -14,7 +16,7 @@ import {
   fetchLocationCoordinates,
   LocationDataWithCoordinates,
 } from 'services/openWeather';
-import { CallEffect, put, PutEffect } from 'redux-saga/effects';
+
 import { setLocation } from 'store/location';
 
 // ;)
@@ -54,6 +56,18 @@ function* handleLocationAndWeatherByPlace({
   }
 }
 
+function* handleServiceToggle({
+  payload: { service, latitude, longitude },
+}: PayloadAction<{
+  service: WeatherServices;
+  latitude: number;
+  longitude: number;
+}>) {
+  yield fork(handleWeather, {
+    payload: { lat: latitude, lon: longitude, service },
+  });
+}
+
 function* watchLocationByCoordinatedSaga() {
   yield takeLatest(
     getLocationAndWeather.type,
@@ -68,6 +82,10 @@ function* watchLocationByPlaceSaga() {
   );
 }
 
+function* watchWeatherByService() {
+  yield takeLatest(toggleService.type, handleServiceToggle);
+}
+
 export function* watchCalendarSaga() {
   yield takeLatest(getEvents.type, handleEvents);
 }
@@ -75,5 +93,6 @@ export function* watchCalendarSaga() {
 export function* rootSaga() {
   yield Effects.spawn(watchLocationByCoordinatedSaga);
   yield Effects.spawn(watchLocationByPlaceSaga);
+  yield Effects.spawn(watchWeatherByService);
   yield Effects.spawn(watchCalendarSaga);
 }

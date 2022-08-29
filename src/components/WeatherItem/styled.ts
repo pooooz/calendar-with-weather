@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+const smallSize = '72px';
+const smallSizeTablet = '50px';
+const largeSize = '144px';
+const largeSizeTablet = '100px';
+
 export const WeatherItemWrapLi = styled.li`
   display: flex;
   flex-direction: column;
@@ -21,16 +26,20 @@ export const WeatherItemWrapDiv = styled.div`
 `;
 
 export const Icon = styled.img`
+  width: ${smallSize};
+  height: ${smallSize};
   @media screen and ${({ theme }) => theme.device.tablet} {
-    width: 50px;
-    height: 50px;
+    width: ${smallSizeTablet};
+    height: ${smallSizeTablet};
   }
 `;
 
 export const ActualIcon = styled.img`
+  width: ${largeSize};
+  height: ${largeSize};
   @media screen and ${({ theme }) => theme.device.tablet} {
-    width: 100px;
-    height: 100px;
+    width: ${largeSizeTablet};
+    height: ${largeSizeTablet};
   }
 `;
 

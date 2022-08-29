@@ -1,5 +1,10 @@
 import React from 'react';
 
+import { useAppSelector } from 'store/hooks';
+import { selectWeatherService } from 'store/weather/selectors';
+
+import { getIconPath } from 'utils/index';
+
 import {
   WeatherItemWrapLi,
   WeatherItemWrapDiv,
@@ -22,11 +27,16 @@ export const WeatherItem = ({
   weatherDay,
   wrapElement = 'li',
 }: WeatherItemProps) => {
+  const service = useAppSelector(selectWeatherService);
+
+  const file =
+    service === 'TomorrowIo' ? weatherDay.weatherCodeDay : weatherDay.icon;
+
   if (wrapElement === 'div') {
     return (
       <WeatherItemWrapDiv>
         <ActualIcon
-          src={`../img/icons/${weatherDay.weatherCodeDay}@2x.png`}
+          src={getIconPath(service, file, true)}
           alt={weatherDay.description}
         />
         <TodayInfoWrap>
@@ -43,7 +53,7 @@ export const WeatherItem = ({
       <Weekday>{weatherDay.weekday}</Weekday>
       <DayInfoWrap>
         <Icon
-          src={`../img/icons/${weatherDay.weatherCodeDay}.png`}
+          src={getIconPath(service, file, false)}
           alt={weatherDay.description}
         />
         <Temperature>{Math.trunc(weatherDay.temperature)}&#176;</Temperature>

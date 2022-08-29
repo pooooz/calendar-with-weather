@@ -1,7 +1,8 @@
 const getLocationType = 'location/getLocationAndWeather';
-export const getLocationAndWeather = (
-  payload: { lat: number; lon: number } | { place: string }
-) => ({
+export const getLocationAndWeather = (payload: {
+  lat: number;
+  lon: number;
+}) => ({
   type: getLocationType,
   payload,
 });
@@ -14,6 +15,17 @@ export const getLocationAndWeatherByPlace = (payload: { place: string }) => ({
   payload,
 });
 getLocationAndWeatherByPlace.type = getLocationAndWeatherByPlaceType;
+
+const toggleServiceType = 'location/toggleService';
+export const toggleService = (payload: {
+  service: keyof typeof WeatherServices;
+  latitude: number;
+  longitude: number;
+}) => ({
+  type: toggleServiceType,
+  payload,
+});
+toggleService.type = toggleServiceType;
 
 const getEventsType = 'calendar/getEvents';
 export const getEvents = () => ({
