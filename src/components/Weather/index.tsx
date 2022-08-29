@@ -1,13 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useAppSelector } from 'store/hooks';
-import { selectWeatherInfo } from 'store/weather/selectors';
+import {
+  selectRequestTimestamp,
+  selectWeatherInfo,
+  selectWeatherService,
+} from 'store/weather/selectors';
+
 import { List } from 'components/List';
 import { WeatherItem } from 'components/WeatherItem';
+
+import { selectCoordinates } from 'store/location/selectors';
+import { useDispatch } from 'react-redux';
+import { getWeatherByCoordinates } from 'store/sagas/actions';
+
+import { shouldRequestWeather } from 'utils/index';
+
 import { ErrorHeading, WeatherWrap } from './styled';
 
 export const Weather = () => {
   const { weekInfo, error } = useAppSelector(selectWeatherInfo);
+  const requestTimestamp = useAppSelector(selectRequestTimestamp);
+  const { latitude, longitude } = useAppSelector(selectCoordinates);
+  const service = useAppSelector(selectWeatherService);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (shouldRequestWeather(requestTimestamp)) {
+      dispatch(
+        getWeatherByCoordinates({ lat: latitude, lon: longitude, service })
+      );
+    }
+  });
+
   return (
     <WeatherWrap>
       {error && <ErrorHeading>{error}</ErrorHeading>}

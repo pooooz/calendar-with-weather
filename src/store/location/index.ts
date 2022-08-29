@@ -5,6 +5,7 @@ export interface locationState {
   longitude: number;
   place: string;
   country: string;
+  isSelectedByUser: boolean;
   error: string;
 }
 const initialState: locationState = {
@@ -12,6 +13,7 @@ const initialState: locationState = {
   longitude: 27.559,
   place: 'Minsk',
   country: 'Belarus',
+  isSelectedByUser: false,
   error: '',
 };
 
@@ -38,6 +40,7 @@ const locationSlice = createSlice({
         state.longitude = lon;
         state.place = place;
         state.country = country;
+        state.isSelectedByUser = true;
       }
 
       if (error === '') {

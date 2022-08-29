@@ -5,4 +5,7 @@ export const selectCoordinates = (state: RootState) => ({
   longitude: state.location.longitude,
 });
 
+export const selectIsSelectedByUser = (state: RootState) =>
+  state.location.isSelectedByUser;
+
 export const selectCountryAndPlace = (state: RootState) => state.location;

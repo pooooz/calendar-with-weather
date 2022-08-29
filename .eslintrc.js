@@ -84,5 +84,8 @@ module.exports = {
     'no-param-reassign': 0,
     'prefer-destructuring': 0,
     'react/require-default-props': 0,
+    'no-shadow': 0,
+    'import/no-cycle': 0,
+    'react-hooks/exhaustive-deps': ['warn'],
   },
 };

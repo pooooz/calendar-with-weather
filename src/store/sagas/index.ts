@@ -1,10 +1,13 @@
 import * as Effects from 'redux-saga/effects';
+import { CallEffect, put, PutEffect } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 
 import {
   getEvents,
   getLocationAndWeather,
   getLocationAndWeatherByPlace,
+  getWeatherByCoordinates,
+  toggleService,
 } from 'store/sagas/actions';
 
 import { handleLocation } from 'store/sagas/location';
@@ -14,7 +17,7 @@ import {
   fetchLocationCoordinates,
   LocationDataWithCoordinates,
 } from 'services/openWeather';
-import { CallEffect, put, PutEffect } from 'redux-saga/effects';
+
 import { setLocation } from 'store/location';
 
 // ;)
@@ -54,26 +57,48 @@ function* handleLocationAndWeatherByPlace({
   }
 }
 
-function* watchLocationByCoordinatedSaga() {
+function* handleServiceToggle({
+  payload: { service, latitude, longitude },
+}: PayloadAction<{
+  service: WeatherServices;
+  latitude: number;
+  longitude: number;
+}>) {
+  yield fork(handleWeather, {
+    payload: { lat: latitude, lon: longitude, service },
+  });
+}
+
+function* watchLocationAndWeatherByCoordinates() {
   yield takeLatest(
     getLocationAndWeather.type,
     handleLocationAndWeatherByCoordinates
   );
 }
 
-function* watchLocationByPlaceSaga() {
+function* watchLocationAndWeatherByPlace() {
   yield takeLatest(
     getLocationAndWeatherByPlace.type,
     handleLocationAndWeatherByPlace
   );
 }
 
-export function* watchCalendarSaga() {
+function* watchWeatherByCoordinates() {
+  yield takeLatest(getWeatherByCoordinates.type, handleWeather);
+}
+
+function* watchWeatherByService() {
+  yield takeLatest(toggleService.type, handleServiceToggle);
+}
+
+export function* watchCalendar() {
   yield takeLatest(getEvents.type, handleEvents);
 }
 
 export function* rootSaga() {
-  yield Effects.spawn(watchLocationByCoordinatedSaga);
-  yield Effects.spawn(watchLocationByPlaceSaga);
-  yield Effects.spawn(watchCalendarSaga);
+  yield Effects.spawn(watchLocationAndWeatherByCoordinates);
+  yield Effects.spawn(watchLocationAndWeatherByPlace);
+  yield Effects.spawn(watchWeatherByCoordinates);
+  yield Effects.spawn(watchWeatherByService);
+  yield Effects.spawn(watchCalendar);
 }
