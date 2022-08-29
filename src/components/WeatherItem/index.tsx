@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { getIconPath } from 'utils/index';
 import {
   WeatherItemWrapLi,
   WeatherItemWrapDiv,
@@ -27,10 +26,7 @@ export const WeatherItem = ({
     return (
       <WeatherItemWrapDiv>
         <ActualIcon
-          src={`../img/icons/${getIconPath(
-            weatherDay.weatherCodeDay,
-            weatherDay.description
-          )}large@2x.png`}
+          src={`../img/icons/${weatherDay.weatherCodeDay}@2x.png`}
           alt={weatherDay.description}
         />
         <TodayInfoWrap>
@@ -47,10 +43,7 @@ export const WeatherItem = ({
       <Weekday>{weatherDay.weekday}</Weekday>
       <DayInfoWrap>
         <Icon
-          src={`../img/icons/${getIconPath(
-            weatherDay.weatherCodeDay,
-            weatherDay.description
-          )}large.png`}
+          src={`../img/icons/${weatherDay.weatherCodeDay}.png`}
           alt={weatherDay.description}
         />
         <Temperature>{Math.trunc(weatherDay.temperature)}&#176;</Temperature>

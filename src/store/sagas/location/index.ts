@@ -20,9 +20,14 @@ const shouldFetchData = (
   lon: number
 ) => lat !== prevLat || lon !== prevLon;
 
-export function* handleLocation(
-  action: PayloadAction<{ lat: number; lon: number }>
-): Generator<
+export function* handleLocation({
+  payload: { lat, lon, name, country },
+}: PayloadAction<{
+  lat: number;
+  lon: number;
+  name?: string;
+  country?: string;
+}>): Generator<
   | CallEffect<LocationData>
   | PutEffect<PayloadAction<setLocationPayload>>
   | SelectEffect,
@@ -33,28 +38,30 @@ export function* handleLocation(
     const coordinates = yield select(selectCoordinates);
     const { latitude, longitude } = coordinates as locationState;
 
-    if (
-      shouldFetchData(
-        latitude,
-        longitude,
-        action.payload.lat,
-        action.payload.lon
-      )
-    ) {
-      const locationInfo = yield call(
-        fetchLocationName,
-        action.payload.lat,
-        action.payload.lon
-      );
+    if (!name && !country) {
+      if (shouldFetchData(latitude, longitude, lat, lon)) {
+        const locationInfo = yield call(fetchLocationName, lat, lon);
 
-      const locationCountry =
-        isoCountriesMap.get(locationInfo.country) || locationInfo.country;
+        const locationCountry =
+          isoCountriesMap.get(locationInfo.country) || locationInfo.country;
 
+        yield put(
+          setLocation({
+            lat,
+            lon,
+            place: (locationInfo as LocationData).name,
+            country: locationCountry,
+            error: '',
+          })
+        );
+      }
+    } else {
+      const locationCountry = isoCountriesMap.get(country as string) || country;
       yield put(
         setLocation({
-          lat: action.payload.lat,
-          lon: action.payload.lon,
-          place: (locationInfo as LocationData).name,
+          lat,
+          lon,
+          place: name,
           country: locationCountry,
           error: '',
         })

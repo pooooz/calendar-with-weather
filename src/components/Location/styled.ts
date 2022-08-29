@@ -18,6 +18,23 @@ export const Country = styled.h3`
   font-weight: 600;
 `;
 
+export const SelectorButton = styled.button`
+  cursor: pointer;
+  background: #0c6d96;
+  border: none;
+  border-radius: 15px;
+  padding: 5px;
+  transition: background-color 400ms;
+
+  &:hover {
+    background: #094867;
+  }
+
+  &:active {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  }
+`;
+
 export const ErrorHeading = styled.h4`
   color: red;
 `;

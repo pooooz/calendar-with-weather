@@ -10,9 +10,9 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { fetchWeatherInfo } from 'services/tomorrowIo';
 import { setWeather, setWeatherPayload } from 'store/weather';
 
-export function* handleWeather(
-  action: PayloadAction<{ lat: number; lon: number }>
-): Generator<
+export function* handleWeather({
+  payload: { lat, lon },
+}: PayloadAction<{ lat: number; lon: number }>): Generator<
   | SelectEffect
   | CallEffect<DerivedDayData[]>
   | PutEffect<PayloadAction<setWeatherPayload>>,
@@ -20,11 +20,7 @@ export function* handleWeather(
   DerivedDayData[]
 > {
   try {
-    const weatherInfo = yield call(
-      fetchWeatherInfo,
-      action.payload.lat,
-      action.payload.lon
-    );
+    const weatherInfo = yield call(fetchWeatherInfo, lat, lon);
     yield put(setWeather({ weather: weatherInfo, error: '' }));
   } catch (error) {
     console.error(error);
