@@ -11,10 +11,14 @@ const getNewsButtonColorHover = '#253e41';
 export const EventsWrap = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   min-height: 230px;
   padding: 1% 7%;
   text-shadow: 0 0 8px ${textShadowColor};
+
+  @media screen and ${({ theme }) => theme.device.tablet} {
+    min-height: 200px;
+  }
 `;
 
 export const ButtonArea = styled.div`
