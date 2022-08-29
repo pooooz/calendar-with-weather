@@ -15,6 +15,15 @@ export const getCurrentGeolocation = (
   navigator.geolocation.getCurrentPosition(callback, onError, options);
 };
 
+export const shouldRequestWeather = (requestTimestamp: string) => {
+  const refreshTimeMin = 30;
+
+  const requestTime = new Date(requestTimestamp);
+  const now = new Date();
+
+  return (now.getTime() - requestTime.getTime()) / 1000 / 60 >= refreshTimeMin;
+};
+
 export const extractWeatherInfoTomorrowIo = (
   weatherInfo: WeatherDataTomorrowIo
 ) => {

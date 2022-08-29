@@ -4,6 +4,7 @@ interface weatherState {
   service: keyof typeof WeatherServices;
   weekInfo: Array<DerivedDayData>;
   today: string;
+  requestTimestamp: string;
   error: string;
 }
 const initialState: weatherState = {
@@ -17,6 +18,7 @@ const initialState: weatherState = {
     },
   ],
   today: 'Clear, sunny',
+  requestTimestamp: new Date().toISOString(),
   error: '',
 };
 
@@ -38,6 +40,7 @@ const weatherSlice = createSlice({
       if (weather) {
         state.weekInfo = weather;
         state.today = weather[0].description;
+        state.requestTimestamp = new Date().toISOString();
       }
       if (error === '') {
         state.error = '';

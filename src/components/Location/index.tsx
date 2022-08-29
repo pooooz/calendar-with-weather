@@ -1,11 +1,15 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { useAppSelector } from 'store/hooks';
 import { getCurrentGeolocation } from 'utils/index';
 
-import { selectCountryAndPlace } from 'store/location/selectors';
+import {
+  selectCountryAndPlace,
+  selectIsSelectedByUser,
+} from 'store/location/selectors';
+
 import { getLocationAndWeather } from 'store/sagas/actions';
-import { useAppSelector } from 'store/hooks';
 
 import { Modal } from 'components/Modal';
 import { CitySelector } from 'components/CitySelector';
@@ -20,7 +24,10 @@ import {
 
 export const Location = () => {
   const { country, place, error } = useAppSelector(selectCountryAndPlace);
+  const isSelectedByUser = useAppSelector(selectIsSelectedByUser);
+
   const [modalOpened, setModalOpened] = useState(false);
+
   const dispatch = useDispatch();
 
   const formRef = useRef<HTMLFormElement>(null);
@@ -48,15 +55,17 @@ export const Location = () => {
   }, [handleOutsideClick]);
 
   useEffect(() => {
-    getCurrentGeolocation(async (pos) => {
-      const { coords } = pos;
-      dispatch(
-        getLocationAndWeather({
-          lat: coords.latitude,
-          lon: coords.longitude,
-        })
-      );
-    });
+    if (!isSelectedByUser) {
+      getCurrentGeolocation(async (pos) => {
+        const { coords } = pos;
+        dispatch(
+          getLocationAndWeather({
+            lat: coords.latitude,
+            lon: coords.longitude,
+          })
+        );
+      });
+    }
   }, [dispatch]);
 
   return (

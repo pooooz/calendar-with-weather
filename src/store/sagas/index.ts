@@ -6,6 +6,7 @@ import {
   getEvents,
   getLocationAndWeather,
   getLocationAndWeatherByPlace,
+  getWeatherByCoordinates,
   toggleService,
 } from 'store/sagas/actions';
 
@@ -68,31 +69,36 @@ function* handleServiceToggle({
   });
 }
 
-function* watchLocationByCoordinatedSaga() {
+function* watchLocationAndWeatherByCoordinates() {
   yield takeLatest(
     getLocationAndWeather.type,
     handleLocationAndWeatherByCoordinates
   );
 }
 
-function* watchLocationByPlaceSaga() {
+function* watchLocationAndWeatherByPlace() {
   yield takeLatest(
     getLocationAndWeatherByPlace.type,
     handleLocationAndWeatherByPlace
   );
 }
 
+function* watchWeatherByCoordinates() {
+  yield takeLatest(getWeatherByCoordinates.type, handleWeather);
+}
+
 function* watchWeatherByService() {
   yield takeLatest(toggleService.type, handleServiceToggle);
 }
 
-export function* watchCalendarSaga() {
+export function* watchCalendar() {
   yield takeLatest(getEvents.type, handleEvents);
 }
 
 export function* rootSaga() {
-  yield Effects.spawn(watchLocationByCoordinatedSaga);
-  yield Effects.spawn(watchLocationByPlaceSaga);
+  yield Effects.spawn(watchLocationAndWeatherByCoordinates);
+  yield Effects.spawn(watchLocationAndWeatherByPlace);
+  yield Effects.spawn(watchWeatherByCoordinates);
   yield Effects.spawn(watchWeatherByService);
-  yield Effects.spawn(watchCalendarSaga);
+  yield Effects.spawn(watchCalendar);
 }
