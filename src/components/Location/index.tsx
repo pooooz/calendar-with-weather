@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { getCurrentGeolocation } from 'utils/index';
 
 import { selectCountryAndPlace } from 'store/location/selectors';
-import { getLocation } from 'store/sagas/actions';
+import { getLocationAndWeather } from 'store/sagas/actions';
 import { useAppSelector } from 'store/hooks';
 
 import { Modal } from 'components/Modal';
@@ -51,7 +51,7 @@ export const Location = () => {
     getCurrentGeolocation(async (pos) => {
       const { coords } = pos;
       dispatch(
-        getLocation({
+        getLocationAndWeather({
           lat: coords.latitude,
           lon: coords.longitude,
         })

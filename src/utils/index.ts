@@ -41,21 +41,6 @@ export const extractEventsInfo = (
     id,
   }));
 
-export const getIconPath = (weatherCodeDay: number, description: string) =>
-  `${weatherCodeDay}_${description
-    .split(/\s|,/)
-    .map((elem) => {
-      switch (elem.toLowerCase()) {
-        case '': {
-          return '';
-        }
-        default: {
-          return `${elem.toLowerCase()}_`;
-        }
-      }
-    })
-    .join('')}`;
-
 export const getBackgroundNameByDescription = (description: string) => {
   const descriptionInLowerCase = description.toLowerCase();
   const cases = ['clear', 'snow', 'cloudy', 'rainy'];

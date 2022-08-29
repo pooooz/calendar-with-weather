@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { getLocation } from 'store/sagas/actions';
+import { getLocationAndWeatherByPlace } from 'store/sagas/actions';
 
 import {
   ShadowWrap,
@@ -19,7 +19,7 @@ export const CitySelector = React.forwardRef<HTMLFormElement>((props, ref) => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(getLocation({ place: city }));
+    dispatch(getLocationAndWeatherByPlace({ place: city }));
     setCity('');
   };
 

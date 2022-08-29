@@ -1,11 +1,19 @@
 const getLocationType = 'location/getLocationAndWeather';
-export const getLocation = (
+export const getLocationAndWeather = (
   payload: { lat: number; lon: number } | { place: string }
 ) => ({
   type: getLocationType,
   payload,
 });
-getLocation.type = getLocationType;
+getLocationAndWeather.type = getLocationType;
+
+const getLocationAndWeatherByPlaceType =
+  'location/getLocationAndWeatherByPlace';
+export const getLocationAndWeatherByPlace = (payload: { place: string }) => ({
+  type: getLocationAndWeatherByPlaceType,
+  payload,
+});
+getLocationAndWeatherByPlace.type = getLocationAndWeatherByPlaceType;
 
 const getEventsType = 'calendar/getEvents';
 export const getEvents = () => ({
