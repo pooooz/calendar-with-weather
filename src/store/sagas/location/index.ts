@@ -1,17 +1,18 @@
 import {
   call,
-  put,
-  select,
   CallEffect,
+  put,
   PutEffect,
+  select,
   SelectEffect,
 } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 
-import { fetchLocationName, LocationData } from 'services/openWeather';
 import { selectCoordinates } from 'store/location/selectors';
 import { locationState, setLocation, setLocationPayload } from 'store/location';
 import { isoCountriesMap } from 'constants/index';
+
+import { fetchLocationName, LocationData } from 'services/openWeather';
 
 const shouldFetchData = (
   prevLat: number,

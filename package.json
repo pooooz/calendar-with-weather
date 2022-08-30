@@ -31,7 +31,8 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "lint": "npx tsc --noEmit && npx eslint --ext .js,.jsx,.ts,.tsx --fix ./",
+    "lint": "npx tsc --noEmit && npx eslint --ext .js,.jsx,.ts,.tsx ./",
+    "lint:fix": "npx tsc --noEmit && npx eslint --ext .js,.jsx,.ts,.tsx --fix ./",
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build"
   },

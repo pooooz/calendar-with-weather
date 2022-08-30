@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-
 import { ThemeProvider } from 'styled-components';
+
 import { Home } from 'pages/Home';
 
 import { defaultTheme, GlobalStyles } from '../globalStyles';

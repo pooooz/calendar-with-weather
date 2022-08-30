@@ -1,4 +1,5 @@
 import { extractWeatherInfoVisualCrossing } from 'utils/index';
+
 import { VISUALCROSSING_API_KEY } from '../constants';
 
 export const fetchWeatherInfoVisualCrossing = async (

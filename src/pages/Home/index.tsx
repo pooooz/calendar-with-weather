@@ -1,19 +1,17 @@
 import React from 'react';
 
 import { useAppSelector } from 'store/hooks';
-
 import { selectTodayWeatherDescription } from 'store/weather/selectors';
-import { getBackgroundNameByDescription } from 'utils/index';
-
 import { Clock } from 'components/Clock';
 import { Location } from 'components/Location';
 import { Weather } from 'components/Weather';
 import { WeatherServicesToggle } from 'components/WeatherServicesToggle';
 import { CalendarEvents } from 'components/CalendarEvents';
 
-import { splashScreens, backgrounds } from './constants';
+import { getBackgroundNameByDescription } from 'utils/index';
 
-import { DataWrap, Header, WeatherBackground, Footer } from './styled';
+import { backgrounds, splashScreens } from './constants';
+import { DataWrap, Footer, Header, WeatherBackground } from './styled';
 
 export const Home = () => {
   const descriptionToday = useAppSelector(selectTodayWeatherDescription);

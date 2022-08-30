@@ -9,16 +9,15 @@ import {
   getWeatherByCoordinates,
   toggleService,
 } from 'store/sagas/actions';
-
 import { handleLocation } from 'store/sagas/location';
 import { handleWeather } from 'store/sagas/weather';
 import { handleEvents } from 'store/sagas/calendar';
+import { setLocation } from 'store/location';
+
 import {
   fetchLocationCoordinates,
   LocationDataWithCoordinates,
 } from 'services/openWeather';
-
-import { setLocation } from 'store/location';
 
 // ;)
 const fork: any = Effects.fork;

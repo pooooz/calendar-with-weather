@@ -4,18 +4,17 @@ import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'store/hooks';
 import { getEvents } from 'store/sagas/actions';
 import { selectEvents } from 'store/calendar/selectors';
-
-import { apiCalendar } from 'services/googleCalendar';
-
 import { List } from 'components/List';
 import { EventItem } from 'components/EventItem';
 
+import { apiCalendar } from 'services/googleCalendar';
+
 import {
-  EventsWrap,
-  ButtonArea,
   AuthButton,
-  GetEventsButton,
+  ButtonArea,
   ErrorHeading,
+  EventsWrap,
+  GetEventsButton,
 } from './styled';
 
 export const CalendarEvents = () => {

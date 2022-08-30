@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { dateOptions, timeOptions } from './constants';
-
-import { Time, DateString } from './styled';
+import { DateString, Time } from './styled';
 
 export const Clock = () => {
   const [time, setTime] = useState<string>(

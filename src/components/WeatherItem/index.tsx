@@ -6,16 +6,16 @@ import { selectWeatherService } from 'store/weather/selectors';
 import { getIconPath } from 'utils/index';
 
 import {
-  WeatherItemWrapLi,
-  WeatherItemWrapDiv,
-  Icon,
-  Weekday,
-  Today,
-  Temperature,
-  DayTemperature,
-  DayInfoWrap,
-  TodayInfoWrap,
   ActualIcon,
+  DayInfoWrap,
+  DayTemperature,
+  Icon,
+  Temperature,
+  Today,
+  TodayInfoWrap,
+  WeatherItemWrapDiv,
+  WeatherItemWrapLi,
+  Weekday,
 } from './styled';
 
 interface WeatherItemProps {

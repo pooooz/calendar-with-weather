@@ -3,11 +3,10 @@ import { useDispatch } from 'react-redux';
 
 import { toggleService } from 'store/sagas/actions';
 import { useAppSelector } from 'store/hooks';
-
 import { selectCoordinates } from 'store/location/selectors';
 import { selectWeatherService } from 'store/weather/selectors';
 
-import { ButtonArea, ServiceButton, ChoosePrompt } from './styled';
+import { ButtonArea, ChoosePrompt, ServiceButton } from './styled';
 
 export const WeatherServicesToggle = () => {
   const dispatch = useDispatch();

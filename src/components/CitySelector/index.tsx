@@ -4,12 +4,12 @@ import { useDispatch } from 'react-redux';
 import { getLocationAndWeatherByPlace } from 'store/sagas/actions';
 
 import {
-  ShadowWrap,
   CitySelectorForm,
-  Fieldset,
   EntryPrompt,
+  Fieldset,
   Input,
   SearchButton,
+  ShadowWrap,
 } from './styled';
 
 export const CitySelector = React.forwardRef<HTMLFormElement>((props, ref) => {

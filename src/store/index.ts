@@ -1,21 +1,20 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import {
-  persistStore,
-  persistReducer,
   FLUSH,
-  REHYDRATE,
   PAUSE,
   PERSIST,
+  persistReducer,
+  persistStore,
   PURGE,
   REGISTER,
+  REHYDRATE,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import { calendarReducer } from './calendar';
 import { locationReducer } from './location';
 import { weatherReducer } from './weather';
-
 import { rootSaga } from './sagas';
 
 const sagaMiddleware = createSagaMiddleware();
