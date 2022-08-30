@@ -1,6 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
+  "homepage": "https://pooooz.github.io/calendar-with-weather",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.5",
@@ -30,7 +31,9 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "lint": "npx tsc --noEmit && npx eslint --ext .js,.jsx,.ts,.tsx --fix ./"
+    "lint": "npx tsc --noEmit && npx eslint --ext .js,.jsx,.ts,.tsx --fix ./",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [
@@ -57,6 +60,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "gh-pages": "^4.0.0",
     "prettier": "^2.7.1"
   }
 }

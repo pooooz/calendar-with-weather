@@ -3,6 +3,7 @@ export const TOMORROWIO_API_KEY = process.env.REACT_APP_TOMORROWIO_KEY;
 export const VISUALCROSSING_API_KEY = process.env.REACT_APP_VISUALCROSSING_KEY;
 export const GOOGLE_CALENDAR_API_KEY = process.env.REACT_APP_GOOGLE_KEY;
 export const GOOGLE_CALENDAR_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+export const PUBLIC_URL = process.env.PUBLIC_URL;
 
 const weatherCodeDescription = {
   '0': 'Unknown',
