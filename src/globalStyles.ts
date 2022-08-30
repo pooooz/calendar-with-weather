@@ -1,4 +1,4 @@
-import { DefaultTheme, createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, DefaultTheme } from 'styled-components';
 
 const size: { [key: string]: string } = {
   mobileS: '320px',

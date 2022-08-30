@@ -62,6 +62,55 @@ module.exports = {
     'linebreak-style': ['error', 'unix'],
     quotes: ['warn', 'single'],
     semi: ['error', 'always'],
+    'sort-imports': [
+      'error',
+      {
+        ignoreCase: true,
+        ignoreDeclarationSort: true,
+      },
+    ],
+    'import/order': [
+      'error',
+      {
+        'newlines-between': 'always',
+        groups: [
+          'external',
+          'builtin',
+          'internal',
+          'sibling',
+          'parent',
+          'index',
+        ],
+        pathGroups: [
+          {
+            pattern: 'components/**',
+            group: 'internal',
+          },
+          {
+            pattern: 'pages/**',
+            group: 'internal',
+          },
+          {
+            pattern: 'store/**',
+            group: 'internal',
+          },
+          {
+            pattern: 'constants/**',
+            group: 'internal',
+          },
+          {
+            pattern: 'utils/**',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: 'services/**',
+            group: 'internal',
+            position: 'after',
+          },
+        ],
+      },
+    ],
     'import/prefer-default-export': 'off',
     'no-plusplus': 0,
     'max-classes-per-file': 0,

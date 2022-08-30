@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { RowContainer, ColumnContainer } from './styled';
+import { ColumnContainer, RowContainer } from './styled';
 
 interface ListProps<T> {
   items: T[];

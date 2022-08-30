@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { useAppSelector } from 'store/hooks';
 import {
@@ -6,12 +7,9 @@ import {
   selectWeatherInfo,
   selectWeatherService,
 } from 'store/weather/selectors';
-
 import { List } from 'components/List';
 import { WeatherItem } from 'components/WeatherItem';
-
 import { selectCoordinates } from 'store/location/selectors';
-import { useDispatch } from 'react-redux';
 import { getWeatherByCoordinates } from 'store/sagas/actions';
 
 import { shouldRequestWeather } from 'utils/index';

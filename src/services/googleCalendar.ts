@@ -3,8 +3,8 @@ import ApiCalendar from 'react-google-calendar-api';
 import { extractEventsInfo } from 'utils/index';
 
 import {
-  GOOGLE_CALENDAR_CLIENT_ID,
   GOOGLE_CALENDAR_API_KEY,
+  GOOGLE_CALENDAR_CLIENT_ID,
 } from '../constants';
 
 const config = {

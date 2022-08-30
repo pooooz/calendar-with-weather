@@ -2,24 +2,22 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useAppSelector } from 'store/hooks';
-import { getCurrentGeolocation } from 'utils/index';
-
 import {
   selectCountryAndPlace,
   selectIsSelectedByUser,
 } from 'store/location/selectors';
-
 import { getLocationAndWeather } from 'store/sagas/actions';
-
 import { Modal } from 'components/Modal';
 import { CitySelector } from 'components/CitySelector';
 
+import { getCurrentGeolocation } from 'utils/index';
+
 import {
+  Country,
+  ErrorHeading,
   LocationWrap,
   Place,
-  Country,
   SelectorButton,
-  ErrorHeading,
 } from './styled';
 
 export const Location = () => {

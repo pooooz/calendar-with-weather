@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { timeOptions } from './constants';
-
 import { EventWrap, Time } from './styled';
 
 interface EventItemProps {

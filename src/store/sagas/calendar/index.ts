@@ -1,6 +1,8 @@
-import { call, put, CallEffect, PutEffect } from 'redux-saga/effects';
-import { fetchTodayEvents } from 'services/googleCalendar';
+import { call, CallEffect, put, PutEffect } from 'redux-saga/effects';
+
 import { setEvents } from 'store/calendar';
+
+import { fetchTodayEvents } from 'services/googleCalendar';
 
 interface CustomError {
   result: {

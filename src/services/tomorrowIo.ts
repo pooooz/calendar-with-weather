@@ -1,4 +1,5 @@
 import { extractWeatherInfoTomorrowIo } from 'utils/index';
+
 import { TOMORROWIO_API_KEY } from '../constants';
 
 export const fetchWeatherInfoTomorrowIo = async (lat: number, lon: number) => {

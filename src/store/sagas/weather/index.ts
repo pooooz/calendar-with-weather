@@ -2,21 +2,22 @@ import {
   call,
   CallEffect,
   put,
-  select,
   PutEffect,
+  select,
   SelectEffect,
 } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 
-import { fetchWeatherInfoTomorrowIo } from 'services/tomorrowIo';
 import {
   setService,
+  setServicePayload,
   setWeather,
   setWeatherPayload,
-  setServicePayload,
 } from 'store/weather';
-import { fetchWeatherInfoVisualCrossing } from 'services/visualCrossing';
 import { selectWeatherService } from 'store/weather/selectors';
+
+import { fetchWeatherInfoTomorrowIo } from 'services/tomorrowIo';
+import { fetchWeatherInfoVisualCrossing } from 'services/visualCrossing';
 
 export function* handleWeather({
   payload: { lat, lon, service },
