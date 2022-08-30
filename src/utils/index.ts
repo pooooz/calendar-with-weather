@@ -1,4 +1,4 @@
-import { weatherCodeDayMap } from '../constants';
+import { PUBLIC_URL, weatherCodeDayMap } from '../constants';
 
 export const getCurrentGeolocation = (
   callback: (pos: GeolocationPosition) => void
@@ -73,14 +73,14 @@ export const getIconPath = (
 ) => {
   switch (service) {
     case 'TomorrowIo': {
-      if (isLarge) return `../img/icons/${service}/${iconName}@2x.png`;
-      return `../img/icons/${service}/${iconName}.png`;
+      if (isLarge) return `${PUBLIC_URL}/icons/${service}/${iconName}@2x.png`;
+      return `${PUBLIC_URL}/icons/${service}/${iconName}.png`;
     }
     case 'VisualCrossing': {
-      return `../img/icons/${service}/${iconName}.svg`;
+      return `${PUBLIC_URL}/icons/${service}/${iconName}.svg`;
     }
     default: {
-      return '../img/icons/unexpected.png';
+      return `${PUBLIC_URL}/icons/unexpected.png`;
     }
   }
 };
