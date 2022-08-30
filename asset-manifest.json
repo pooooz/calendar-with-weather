@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/calendar-with-weather/static/js/main.93187b8a.js",
+    "main.js": "/calendar-with-weather/static/js/main.f54f4e48.js",
     "static/media/clear.jpg": "/calendar-with-weather/static/media/clear.c7543bf8fba18f428ae4.jpg",
     "static/media/rainy.jpg": "/calendar-with-weather/static/media/rainy.332b88f5fd0e6c5fe817.jpg",
     "static/media/cloudy.jpg": "/calendar-with-weather/static/media/cloudy.0863efa72b4fae8ef294.jpg",
     "index.html": "/calendar-with-weather/index.html",
-    "main.93187b8a.js.map": "/calendar-with-weather/static/js/main.93187b8a.js.map"
+    "main.f54f4e48.js.map": "/calendar-with-weather/static/js/main.f54f4e48.js.map"
   },
   "entrypoints": [
-    "static/js/main.93187b8a.js"
+    "static/js/main.f54f4e48.js"
   ]
 }
