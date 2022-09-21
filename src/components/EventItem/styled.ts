@@ -9,6 +9,6 @@ export const EventWrap = styled.li`
 
 export const Time = styled.span`
   background: ${TIME_BACKGROUND_COLOR};
-  border-radius: 15px;
+  border-radius: ${({ theme }) => theme.sizes.radius}px;
   padding: ${({ theme }) => theme.spaces.s}px;
 `;

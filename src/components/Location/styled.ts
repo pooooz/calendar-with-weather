@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-const SELECTOR_BUTTON_BORDER_RADIUS = 15;
-
 const RED_COLOR = '#FF0000';
 const SELECTOR_BUTTON_BACKGROUND_COLOR = '#0c6d96';
 const SELECTOR_BUTTON_HOVER_BACKGROUND_COLOR = '#094867';
 const SELECTOR_BUTTON_ACTIVE_SHADOW = '0 5px 10px rgba(0, 0, 0, 0.3)';
+
+const COUNTRY_FONT_WEIGHT = 600;
 
 export const LocationWrap = styled.div`
   text-align: right;
@@ -22,14 +22,14 @@ export const Place = styled.h2`
 
 export const Country = styled.h3`
   font-size: ${({ theme }) => theme.fontSizes.m}px;
-  font-weight: 600;
+  font-weight: ${COUNTRY_FONT_WEIGHT};
 `;
 
 export const SelectorButton = styled.button`
   cursor: pointer;
   background: ${SELECTOR_BUTTON_BACKGROUND_COLOR};
   border: none;
-  border-radius: ${SELECTOR_BUTTON_BORDER_RADIUS}px;
+  border-radius: ${({ theme }) => theme.sizes.radius}px;
   padding: ${({ theme }) => theme.spaces.s}px;
   transition: background-color 400ms;
 

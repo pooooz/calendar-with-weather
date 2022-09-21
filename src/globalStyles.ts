@@ -38,9 +38,7 @@ const fontSizes = {
 };
 
 const sizes = {
-  s: '200',
-  half: '50%',
-  full: '100%',
+  radius: 15,
 };
 
 const iconSizes = {
@@ -56,6 +54,8 @@ const iconSizes = {
 
 const WHITE_COLOR = '#FFFFFF';
 
+const FULL = '100%';
+
 export const GlobalStyles = createGlobalStyle`
   * {
     margin: 0;
@@ -66,7 +66,7 @@ export const GlobalStyles = createGlobalStyle`
   }
   
   html, body {
-    height: 100%;
+    height: ${FULL};
   }
   
   body {
@@ -85,7 +85,7 @@ export const GlobalStyles = createGlobalStyle`
   
   #root {
     position: relative;
-    height: 100%;
+    height: ${FULL};
   }
 `;
 

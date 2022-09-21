@@ -10,14 +10,16 @@ const BUTTON_BORDER_COLOR = '#FFFFFF';
 const CITY_SELECTOR_SHADOW = '10px 10px rgba(0, 0, 0, 0.25)';
 const BUTTON_ACTIVE_SHADOW = '0 5px 10px rgba(0, 0, 0, 0.2)';
 
-const BUTTON_BORDER_RADIUS = 15;
+const FULL = '100%';
+const HALF = '50%';
+const CITY_SELECTOR_TABLET_WIDTH = '70%';
 
 export const ShadowWrap = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: ${FULL};
+  height: ${FULL};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,8 +30,8 @@ export const CitySelectorForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  height: 50%;
-  width: 50%;
+  height: ${HALF};
+  width: ${HALF};
   background: ${FORM_BACKGROUND_COLOR};
   align-items: center;
   border-radius: 0 0 10% 10% / 0% 0% 10% 10%;
@@ -41,7 +43,7 @@ export const CitySelectorForm = styled.form`
   }
 
   @media screen and ${({ theme }) => theme.device.tablet} {
-    width: 70%;
+    width: ${CITY_SELECTOR_TABLET_WIDTH}%;
   }
 `;
 
@@ -58,7 +60,7 @@ export const EntryPrompt = styled.h2`
 
 export const Input = styled.input.attrs({ type: 'text' })`
   margin: ${({ theme }) => theme.spaces.l}px 0 0 0;
-  border-radius: 15px;
+  border-radius: ${({ theme }) => theme.sizes.radius}px;
   padding: 0 0 0 ${({ theme }) => theme.spaces.l}px;
   color: ${INPUT_TEXT_COLOR};
   outline: none;
@@ -76,12 +78,12 @@ export const SearchButton = styled.button`
   position: relative;
   transition: all 0.3s;
   background: ${BUTTON_BACKGROUND_COLOR};
-  width: 50%;
+  width: ${HALF};
 
   line-height: 30px;
   font-size: ${({ theme }) => theme.fontSizes.m}px;
 
-  border-radius: ${BUTTON_BORDER_RADIUS}px;
+  border-radius: ${({ theme }) => theme.sizes.radius}px;
 
   border: none;
 
@@ -90,8 +92,8 @@ export const SearchButton = styled.button`
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: ${FULL};
+    height: ${FULL};
     z-index: 1;
     opacity: 0;
     transition: all 0.3s;
@@ -101,7 +103,7 @@ export const SearchButton = styled.button`
     border-bottom-style: solid;
     border-top-color: ${BUTTON_BORDER_COLOR};
     border-bottom-color: ${BUTTON_BORDER_COLOR};
-    border-radius: ${BUTTON_BORDER_RADIUS};
+    border-radius: ${({ theme }) => theme.sizes.radius}px;
     transform: scale(0.1, 1);
   }
 
@@ -110,11 +112,11 @@ export const SearchButton = styled.button`
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: ${FULL};
+    height: ${FULL};
     z-index: 1;
     transition: all 0.3s;
-    border-radius: ${BUTTON_BORDER_RADIUS};
+    border-radius: ${({ theme }) => theme.sizes.radius}px;
     background-color: ${BUTTON_AFTER_COLOR};
   }
 

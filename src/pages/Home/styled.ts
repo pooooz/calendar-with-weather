@@ -3,6 +3,8 @@ import styled from 'styled-components';
 const FOOTER_BACKGROUND_COLOR = 'rgba(7, 4, 31, 0.57)';
 const DATA_WRAP_SHADOW = '0 0 20px rgba(0, 0, 0, 1)';
 
+const FULL = '100%';
+
 export const Header = styled.header`
   padding: ${({ theme }) => theme.spaces.s}% ${({ theme }) => theme.spaces.m}% 0;
   display: flex;
@@ -19,7 +21,7 @@ interface WeatherBackgroundProps {
   background: string;
 }
 export const WeatherBackground = styled.div<WeatherBackgroundProps>`
-  height: 100%;
+  height: ${FULL};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,12 +44,11 @@ export const DataWrap = styled.section<DataWrapProps>`
 
   @media screen and ${({ theme }) => theme.device.laptop} {
     min-width: 95%;
-    min-height: 90%;
   }
 
   @media screen and ${({ theme }) => theme.device.tablet} {
     min-width: 90%;
-    min-height: 100%;
+    min-height: ${FULL};
   }
 `;
 
