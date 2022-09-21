@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
-const smallSize = '72px';
-const smallSizeTablet = '50px';
-const largeSize = '144px';
-const largeSizeTablet = '100px';
+const DAY_BACKGROUND_COLOR = 'rgba(13, 9, 38, 0.76)';
+const DAY_BORDER_RADIUS = 15;
 
 export const WeatherItemWrapLi = styled.li`
   display: flex;
@@ -11,7 +9,7 @@ export const WeatherItemWrapLi = styled.li`
   justify-content: space-between;
   list-style-type: none;
   @media screen and ${({ theme }) => theme.device.tablet} {
-    margin: 0 0 6% 0;
+    margin: 0 0 ${({ theme }) => theme.spaces.m}% 0;
   }
 `;
 
@@ -26,20 +24,20 @@ export const WeatherItemWrapDiv = styled.div`
 `;
 
 export const Icon = styled.img`
-  width: ${smallSize};
-  height: ${smallSize};
+  width: ${({ theme }) => theme.iconSizes.small.basic}px;
+  height: ${({ theme }) => theme.iconSizes.small.basic}px;
   @media screen and ${({ theme }) => theme.device.tablet} {
-    width: ${smallSizeTablet};
-    height: ${smallSizeTablet};
+    width: ${({ theme }) => theme.iconSizes.small.tablet}px;
+    height: ${({ theme }) => theme.iconSizes.small.tablet}px;
   }
 `;
 
 export const ActualIcon = styled.img`
-  width: ${largeSize};
-  height: ${largeSize};
+  width: ${({ theme }) => theme.iconSizes.large.basic}px;
+  height: ${({ theme }) => theme.iconSizes.large.basic}px;
   @media screen and ${({ theme }) => theme.device.tablet} {
-    width: ${largeSizeTablet};
-    height: ${largeSizeTablet};
+    width: ${({ theme }) => theme.iconSizes.large.tablet}px;
+    height: ${({ theme }) => theme.iconSizes.large.tablet}px;
   }
 `;
 
@@ -49,7 +47,7 @@ export const DayInfoWrap = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  margin: 5% 0 0 0;
+  margin: ${({ theme }) => theme.spaces.s}% 0 0 0;
 
   @media screen and ${({ theme }) => theme.device.tablet} {
     flex-direction: row;
@@ -62,7 +60,7 @@ export const TodayInfoWrap = styled.div`
   justify-content: space-evenly;
   height: 80%;
   align-items: center;
-  margin: 0 0 0 5%;
+  margin: 0 0 0 ${({ theme }) => theme.spaces.s}%;
 
   @media screen and ${({ theme }) => theme.device.tablet} {
     height: 70%;
@@ -72,46 +70,46 @@ export const TodayInfoWrap = styled.div`
 export const Weekday = styled.h4`
   text-align: center;
   text-transform: uppercase;
-  background: rgba(13, 9, 38, 0.76);
-  border-radius: 15px;
+  background: ${DAY_BACKGROUND_COLOR};
+  border-radius: ${DAY_BORDER_RADIUS}px;
   font-weight: 300;
 
   @media screen and ${({ theme }) => theme.device.tablet} {
-    font-size: 13px;
+    font-size: ${({ theme }) => theme.fontSizes.s}px;
   }
 `;
 
 export const Today = styled.h4`
   text-align: center;
   text-transform: uppercase;
-  background: rgba(13, 9, 38, 0.76);
-  border-radius: 15px;
-  padding: 0 10px;
-  font-size: 18px;
+  background: ${DAY_BACKGROUND_COLOR};
+  border-radius: ${DAY_BORDER_RADIUS}px;
+  padding: 0 ${({ theme }) => theme.spaces.l}px;
+  font-size: ${({ theme }) => theme.fontSizes.s}px;
   font-weight: 300;
 
   @media screen and ${({ theme }) => theme.device.tablet} {
-    font-size: 16px;
+    font-size: ${({ theme }) => theme.fontSizes.s}px;
   }
 `;
 
 export const Temperature = styled.h4`
   text-align: center;
-  font-size: 32px;
+  font-size: ${({ theme }) => theme.fontSizes.l}px;
   font-weight: 300;
 
   @media screen and ${({ theme }) => theme.device.tablet} {
-    margin: 0 0 0 5%;
-    font-size: 24px;
+    margin: 0 0 0 ${({ theme }) => theme.spaces.s}%;
+    font-size: ${({ theme }) => theme.fontSizes.m}px;
   }
 `;
 
 export const DayTemperature = styled.h4`
   text-align: center;
-  font-size: 48px;
+  font-size: ${({ theme }) => theme.fontSizes.xl}px;
   font-weight: 300;
 
   @media screen and ${({ theme }) => theme.device.tablet} {
-    font-size: 32px;
+    font-size: ${({ theme }) => theme.fontSizes.l}px;
   }
 `;

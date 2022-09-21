@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
-const timeBackgroundColor = 'rgb(13, 9, 38, 0.9)';
+const TIME_BACKGROUND_COLOR = 'rgb(13, 9, 38, 0.9)';
 
 export const EventWrap = styled.li`
-  margin: 5px 0 5px 0;
+  margin: ${({ theme }) => theme.spaces.s}px 0
+    ${({ theme }) => theme.spaces.s}px 0;
 `;
 
 export const Time = styled.span`
-  background: ${timeBackgroundColor};
+  background: ${TIME_BACKGROUND_COLOR};
   border-radius: 15px;
-  padding: 3px;
+  padding: ${({ theme }) => theme.spaces.s}px;
 `;

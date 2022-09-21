@@ -1,35 +1,67 @@
 import { createGlobalStyle, DefaultTheme } from 'styled-components';
 
-const size: { [key: string]: string } = {
-  mobileS: '320px',
-  mobileM: '375px',
-  mobileL: '425px',
-  tablet: '768px',
-  laptop: '1024px',
-  laptopL: '1440px',
-  desktop: '1920px',
+const deviceWidth = {
+  mobileS: 320,
+  mobileM: 375,
+  mobileL: 425,
+  tablet: 768,
+  laptop: 1024,
+  laptopL: 1440,
+  desktop: 1920,
 };
 
-export interface IDevice {
-  [key: string]: string;
-}
-export const device: IDevice = {
-  mobileS: `(max-width: ${size.mobileS})`,
-  mobileM: `(max-width: ${size.mobileM})`,
-  mobileL: `(max-width: ${size.mobileL})`,
-  tablet: `(max-width: ${size.tablet})`,
-  laptop: `(max-width: ${size.laptop})`,
-  laptopL: `(max-width: ${size.laptopL})`,
-  desktop: `(max-width: ${size.desktop})`,
-  desktopL: `(max-width: ${size.desktop})`,
+export const device = {
+  mobileS: `(max-width: ${deviceWidth.mobileS}px)`,
+  mobileM: `(max-width: ${deviceWidth.mobileM}px)`,
+  mobileL: `(max-width: ${deviceWidth.mobileL}px)`,
+  tablet: `(max-width: ${deviceWidth.tablet}px)`,
+  laptop: `(max-width: ${deviceWidth.laptop}px)`,
+  laptopL: `(max-width: ${deviceWidth.laptopL}px)`,
+  desktop: `(max-width: ${deviceWidth.desktop}px)`,
+  desktopL: `(max-width: ${deviceWidth.desktop}px)`,
 };
+
+const spaces = {
+  xs: 1,
+  s: 5,
+  m: 7,
+  l: 10,
+  xl: 30,
+};
+
+const fontSizes = {
+  s: 16,
+  m: 24,
+  l: 32,
+  xl: 48,
+  xxl: 64,
+};
+
+const sizes = {
+  s: '200',
+  half: '50%',
+  full: '100%',
+};
+
+const iconSizes = {
+  small: {
+    basic: 72,
+    tablet: 50,
+  },
+  large: {
+    basic: 144,
+    tablet: 100,
+  },
+};
+
+const WHITE_COLOR = '#FFFFFF';
 
 export const GlobalStyles = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #FFFFFF;
+    color: ${WHITE_COLOR};
     font-weight: 400;
   }
   
@@ -59,4 +91,8 @@ export const GlobalStyles = createGlobalStyle`
 
 export const defaultTheme: DefaultTheme = {
   device,
+  sizes,
+  spaces,
+  fontSizes,
+  iconSizes,
 };
