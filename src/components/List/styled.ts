@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
-const thumbColor = 'rgb(13, 9, 38, 0.7)';
-const thumbColorHover = 'rgb(13, 9, 38, 0.9)';
+const THUMB_COLOR = 'rgb(13, 9, 38, 0.7)';
+const THUMB_COLOR_HOVER = 'rgb(13, 9, 38, 0.9)';
 
-const scrollbarSize = '10px';
-const scrollbarSizeTablet = '5px';
-const thumbBorderRadius = '15px';
+const ROW_CONTAINER_TABLET_HEIGHT = 200;
+const COLUMN_CONTAINER_HEIGHT = 150;
+const SCROLLBAR_SIZE = 10;
+const SCROLLBAR_SIZE_TABLET = 5;
 
 export const RowContainer = styled.ul`
   display: flex;
@@ -14,28 +15,28 @@ export const RowContainer = styled.ul`
   list-style-type: none;
 
   &::-webkit-scrollbar {
-    width: ${scrollbarSize};
+    width: ${SCROLLBAR_SIZE}px;
   }
   &::-webkit-scrollbar-track {
     background: transparent;
   }
   &::-webkit-scrollbar-thumb {
-    background: ${thumbColor};
-    border-radius: ${thumbBorderRadius};
+    background: ${THUMB_COLOR};
+    border-radius: ${({ theme }) => theme.sizes.radius}px;
   }
   &::-webkit-scrollbar-thumb:hover {
-    background: ${thumbColorHover};
+    background: ${THUMB_COLOR_HOVER};
   }
 
   @media screen and ${({ theme }) => theme.device.tablet} {
     flex-direction: column;
     align-items: center;
 
-    height: 200px;
+    height: ${ROW_CONTAINER_TABLET_HEIGHT}px;
     overflow-y: scroll;
 
     &::-webkit-scrollbar {
-      width: ${scrollbarSizeTablet};
+      width: ${SCROLLBAR_SIZE_TABLET}px;
     }
   }
 `;
@@ -45,26 +46,26 @@ export const ColumnContainer = styled.ul`
   flex-direction: column;
   list-style-type: none;
 
-  height: 150px;
+  height: ${COLUMN_CONTAINER_HEIGHT}px;
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
-    width: ${scrollbarSize};
+    width: ${SCROLLBAR_SIZE}px;
   }
   &::-webkit-scrollbar-track {
     background: transparent;
   }
   &::-webkit-scrollbar-thumb {
-    background: ${thumbColor};
-    border-radius: ${thumbBorderRadius};
+    background: ${THUMB_COLOR};
+    border-radius: ${({ theme }) => theme.sizes.radius}px;
   }
   &::-webkit-scrollbar-thumb:hover {
-    background: ${thumbColorHover};
+    background: ${THUMB_COLOR_HOVER};
   }
 
   @media screen and ${({ theme }) => theme.device.tablet} {
     &::-webkit-scrollbar {
-      width: ${scrollbarSizeTablet};
+      width: ${SCROLLBAR_SIZE_TABLET}px;
     }
   }
 `;
