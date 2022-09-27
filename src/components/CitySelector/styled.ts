@@ -14,6 +14,11 @@ const FULL = '100%';
 const HALF = '50%';
 const CITY_SELECTOR_TABLET_WIDTH = '70%';
 
+const TEXT_LINE_HEIGHT = 30;
+
+const FORM_BORDER_RADIUS = '0 0 10% 10% / 0% 0% 10% 10%';
+const FORM_BORDER_RADIUS_HOVER = '0 0 50% 50% / 0% 0% 10% 10%';
+
 export const ShadowWrap = styled.div`
   position: absolute;
   top: 0;
@@ -34,11 +39,11 @@ export const CitySelectorForm = styled.form`
   width: ${HALF};
   background: ${FORM_BACKGROUND_COLOR};
   align-items: center;
-  border-radius: 0 0 10% 10% / 0% 0% 10% 10%;
+  border-radius: ${FORM_BORDER_RADIUS};
   transition: all 0.4s ease;
 
   &:hover {
-    border-radius: 0 0 50% 50% / 0% 0% 10% 10%;
+    border-radius: ${FORM_BORDER_RADIUS_HOVER};
     box-shadow: ${CITY_SELECTOR_SHADOW};
   }
 
@@ -65,7 +70,7 @@ export const Input = styled.input.attrs({ type: 'text' })`
   color: ${INPUT_TEXT_COLOR};
   outline: none;
   border: none;
-  line-height: 30px;
+  line-height: ${TEXT_LINE_HEIGHT}px;
   font-size: ${({ theme }) => theme.fontSizes.s}px;
 
   &:focus {
@@ -80,7 +85,7 @@ export const SearchButton = styled.button`
   background: ${BUTTON_BACKGROUND_COLOR};
   width: ${HALF};
 
-  line-height: 30px;
+  line-height: ${TEXT_LINE_HEIGHT}px;
   font-size: ${({ theme }) => theme.fontSizes.m}px;
 
   border-radius: ${({ theme }) => theme.sizes.radius}px;

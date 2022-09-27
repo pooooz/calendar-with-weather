@@ -4,14 +4,7 @@ import { setEvents } from 'store/calendar';
 
 import { fetchTodayEvents } from 'services/googleCalendar';
 
-interface CustomError {
-  result: {
-    error: {
-      code: number;
-      message: string;
-    };
-  };
-}
+import { CustomError } from './interfaces';
 
 export function* handleEvents(): Generator<
   CallEffect<Array<EventItemData>> | PutEffect,

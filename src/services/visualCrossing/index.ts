@@ -1,6 +1,6 @@
-import { extractWeatherInfoVisualCrossing } from 'utils/index';
+import { VISUALCROSSING_API_KEY } from 'constants/index';
 
-import { VISUALCROSSING_API_KEY } from '../constants';
+import { extractWeatherInfoVisualCrossing } from 'utils/index';
 
 export const fetchWeatherInfoVisualCrossing = async (
   lat: number,

@@ -14,10 +14,8 @@ import { handleWeather } from 'store/sagas/weather';
 import { handleEvents } from 'store/sagas/calendar';
 import { setLocation } from 'store/location';
 
-import {
-  fetchLocationCoordinates,
-  LocationDataWithCoordinates,
-} from 'services/openWeather';
+import { fetchLocationCoordinates } from 'services/openWeather';
+import { LocationDataWithCoordinates } from 'services/openWeather/interfaces';
 
 // ;)
 const fork: any = Effects.fork;

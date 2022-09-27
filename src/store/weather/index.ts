@@ -1,13 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface weatherState {
-  service: keyof typeof WeatherServices;
-  weekInfo: Array<DerivedDayData>;
-  today: string;
-  requestTimestamp: string;
-  error: string;
-}
-const initialState: weatherState = {
+import {
+  setServicePayload,
+  setWeatherPayload,
+  WeatherState,
+} from './interfaces';
+
+const initialState: WeatherState = {
   service: 'TomorrowIo',
   weekInfo: [
     {
@@ -22,13 +21,6 @@ const initialState: weatherState = {
   error: '',
 };
 
-export interface setWeatherPayload {
-  weather?: Array<DerivedDayData>;
-  error?: string;
-}
-export interface setServicePayload {
-  service: WeatherServices;
-}
 const weatherSlice = createSlice({
   name: 'weather',
   initialState,

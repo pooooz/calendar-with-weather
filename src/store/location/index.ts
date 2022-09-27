@@ -1,14 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export interface locationState {
-  latitude: number;
-  longitude: number;
-  place: string;
-  country: string;
-  isSelectedByUser: boolean;
-  error: string;
-}
-const initialState: locationState = {
+import { LocationState, setLocationPayload } from './interface';
+
+const initialState: LocationState = {
   latitude: 53.895,
   longitude: 27.559,
   place: 'Minsk',
@@ -16,14 +10,6 @@ const initialState: locationState = {
   isSelectedByUser: false,
   error: '',
 };
-
-export interface setLocationPayload {
-  lat?: number;
-  lon?: number;
-  place?: string;
-  country?: string;
-  error?: string;
-}
 
 const locationSlice = createSlice({
   name: 'location',

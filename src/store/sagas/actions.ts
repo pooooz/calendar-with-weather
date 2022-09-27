@@ -20,7 +20,7 @@ const getWeatherByCoordinatesType = 'location/getWeatherByCoordinates';
 export const getWeatherByCoordinates = (payload: {
   lat: number;
   lon: number;
-  service: keyof typeof WeatherServices;
+  service: WeatherServices;
 }) => ({
   type: getWeatherByCoordinatesType,
   payload,
@@ -29,7 +29,7 @@ getWeatherByCoordinates.type = getWeatherByCoordinatesType;
 
 const toggleServiceType = 'location/toggleService';
 export const toggleService = (payload: {
-  service: keyof typeof WeatherServices;
+  service: WeatherServices;
   latitude: number;
   longitude: number;
 }) => ({

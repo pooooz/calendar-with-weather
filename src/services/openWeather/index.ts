@@ -1,9 +1,7 @@
-import { OPENWEATHER_API_KEY } from '../constants';
+import { OPENWEATHER_API_KEY } from 'constants/index';
 
-export interface LocationData {
-  name: string;
-  country: string;
-}
+import { LocationData, LocationDataWithCoordinates } from './interfaces';
+
 export const fetchLocationName = async (
   lat: number,
   lon: number
@@ -18,12 +16,6 @@ export const fetchLocationName = async (
   return json[0];
 };
 
-export interface LocationDataWithCoordinates {
-  name: string;
-  country: string;
-  lat: string;
-  lon: string;
-}
 export const fetchLocationCoordinates = async (
   place: string
 ): Promise<LocationDataWithCoordinates> => {

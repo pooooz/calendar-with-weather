@@ -1,10 +1,9 @@
+import { weatherServices } from 'constants/index';
+
 export {};
 
 declare global {
-  enum WeatherServices {
-    TomorrowIo = 'TomorrowIo',
-    VisualCrossing = 'VisualCrossing',
-  }
+  type WeatherServices = keyof typeof weatherServices;
 
   interface DayDataTomorrowIo {
     startTime: string;

@@ -2,10 +2,8 @@ import React from 'react';
 
 import { timeOptions } from './constants';
 import { EventWrap, Time } from './styled';
+import { EventItemProps } from './interfaces';
 
-interface EventItemProps {
-  eventInfo: EventItemData;
-}
 export const EventItem = ({
   eventInfo: { start, summary },
 }: EventItemProps) => {

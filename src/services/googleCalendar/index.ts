@@ -1,11 +1,11 @@
 import ApiCalendar from 'react-google-calendar-api';
 
-import { extractEventsInfo } from 'utils/index';
-
 import {
   GOOGLE_CALENDAR_API_KEY,
   GOOGLE_CALENDAR_CLIENT_ID,
-} from '../constants';
+} from 'constants/index';
+
+import { extractEventsInfo } from 'utils/index';
 
 const config = {
   clientId: GOOGLE_CALENDAR_CLIENT_ID as string,

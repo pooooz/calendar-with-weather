@@ -1,10 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface calendarState {
-  events: Array<EventItemData>;
-  error: string;
-}
-const initialState: calendarState = {
+import { CalendarState, setEventsPayload } from './interfaces';
+
+const initialState: CalendarState = {
   events: [
     {
       start: {
@@ -18,10 +16,6 @@ const initialState: calendarState = {
   error: '',
 };
 
-interface setEventsPayload {
-  events?: Array<EventItemData>;
-  error?: string;
-}
 const calendarSlice = createSlice({
   name: 'calendar',
   initialState,

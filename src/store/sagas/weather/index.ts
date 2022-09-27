@@ -8,13 +8,9 @@ import {
 } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 
-import {
-  setService,
-  setServicePayload,
-  setWeather,
-  setWeatherPayload,
-} from 'store/weather';
+import { setService, setWeather } from 'store/weather';
 import { selectWeatherService } from 'store/weather/selectors';
+import { setServicePayload, setWeatherPayload } from 'store/weather/interfaces';
 
 import { fetchWeatherInfoTomorrowIo } from 'services/tomorrowIo';
 import { fetchWeatherInfoVisualCrossing } from 'services/visualCrossing';
