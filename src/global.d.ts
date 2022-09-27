@@ -3,6 +3,10 @@ import { weatherServices } from 'constants/index';
 export {};
 
 declare global {
+  interface Window {
+    gapi: any;
+  }
+
   type WeatherServices = keyof typeof weatherServices;
 
   interface DayDataTomorrowIo {

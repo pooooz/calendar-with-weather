@@ -41,16 +41,16 @@ export const AuthButton = styled.button<AuthButtonProps>`
   margin: 0 ${({ theme }) => theme.spaces.l}px 0;
   padding: ${({ theme }) => theme.spaces.s}px;
   border-radius: ${({ theme }) => theme.sizes.radius}px;
-  background: ${({ isSignIn = false }) =>
-    isSignIn ? SIGN_IN_BUTTON_COLOR : SIGN_OUT_BUTTON_COLOR};
+  background: ${({ isSignedIn }) =>
+    isSignedIn ? SIGN_OUT_BUTTON_COLOR : SIGN_IN_BUTTON_COLOR};
   text-transform: uppercase;
   color: ${WHITE_COLOR};
   border: none;
   transition: background-color 400ms;
 
   &:hover {
-    background: ${({ isSignIn = false }) =>
-      isSignIn ? SIGN_IN_BUTTON_COLOR_HOVER : SIGN_OUT_BUTTON_COLOR_HOVER};
+    background: ${({ isSignedIn }) =>
+      isSignedIn ? SIGN_OUT_BUTTON_COLOR_HOVER : SIGN_IN_BUTTON_COLOR_HOVER};
   }
 
   &:active {
