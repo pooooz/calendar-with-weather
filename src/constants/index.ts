@@ -5,6 +5,11 @@ export const GOOGLE_CALENDAR_API_KEY = process.env.REACT_APP_GOOGLE_KEY;
 export const GOOGLE_CALENDAR_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 export const PUBLIC_URL = process.env.PUBLIC_URL;
 
+export const weatherServices = {
+  TomorrowIo: 'TomorrowIo',
+  VisualCrossing: 'VisualCrossing',
+} as const;
+
 const weatherCodeDescription = {
   '0': 'Unknown',
   '10000': 'Clear, Sunny',

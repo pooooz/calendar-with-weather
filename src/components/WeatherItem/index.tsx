@@ -17,11 +17,7 @@ import {
   WeatherItemWrapLi,
   Weekday,
 } from './styled';
-
-interface WeatherItemProps {
-  weatherDay: DerivedDayData;
-  wrapElement?: 'li' | 'div';
-}
+import { WeatherItemProps } from './interfaces';
 
 export const WeatherItem = ({
   weatherDay,

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { ServiceButtonProps } from './interfaces';
+
 const INACTIVE_COLOR = '#326265';
 const ACTIVE_COLOR = '#0c6d96';
 
@@ -13,9 +15,6 @@ export const ChoosePrompt = styled.p`
   margin: 0 ${({ theme }) => theme.spaces.l}px 0 0;
 `;
 
-interface ServiceButtonProps {
-  isActive: boolean;
-}
 export const ServiceButton = styled.button<ServiceButtonProps>`
   cursor: pointer;
   margin: 0 ${({ theme }) => theme.spaces.l}px 0 0;

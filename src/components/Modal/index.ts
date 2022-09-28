@@ -1,9 +1,7 @@
 import ReactDOM from 'react-dom';
 
-interface ModalProps {
-  isOpened: boolean;
-  children: JSX.Element;
-}
+import { ModalProps } from './interfaces';
+
 const root = document.getElementById('root') as HTMLElement;
 
 export const Modal = ({ isOpened, children }: ModalProps) =>

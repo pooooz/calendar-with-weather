@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { DataWrapProps, WeatherBackgroundProps } from './interfaces';
+
 const FOOTER_BACKGROUND_COLOR = 'rgba(7, 4, 31, 0.57)';
 const DATA_WRAP_SHADOW = '0 0 20px rgba(0, 0, 0, 1)';
 
@@ -17,9 +19,6 @@ export const Header = styled.header`
   }
 `;
 
-interface WeatherBackgroundProps {
-  background: string;
-}
 export const WeatherBackground = styled.div<WeatherBackgroundProps>`
   height: ${FULL};
   display: flex;
@@ -29,9 +28,6 @@ export const WeatherBackground = styled.div<WeatherBackgroundProps>`
   background-size: cover;
 `;
 
-interface DataWrapProps {
-  background: string;
-}
 export const DataWrap = styled.section<DataWrapProps>`
   min-width: 75%;
   min-height: 90%;

@@ -67,7 +67,7 @@ export const extractEventsInfo = (
   }));
 
 export const getIconPath = (
-  service: keyof typeof WeatherServices,
+  service: WeatherServices,
   iconName: string | number | undefined,
   isLarge: boolean
 ) => {

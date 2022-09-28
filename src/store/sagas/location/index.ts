@@ -9,10 +9,12 @@ import {
 import { PayloadAction } from '@reduxjs/toolkit';
 
 import { selectCoordinates } from 'store/location/selectors';
-import { locationState, setLocation, setLocationPayload } from 'store/location';
+import { setLocation } from 'store/location';
+import { LocationState, setLocationPayload } from 'store/location/interface';
 import { isoCountriesMap } from 'constants/index';
 
-import { fetchLocationName, LocationData } from 'services/openWeather';
+import { LocationData } from 'services/openWeather/interfaces';
+import { fetchLocationName } from 'services/openWeather';
 
 const shouldFetchData = (
   prevLat: number,
@@ -33,11 +35,11 @@ export function* handleLocation({
   | PutEffect<PayloadAction<setLocationPayload>>
   | SelectEffect,
   void,
-  LocationData | locationState
+  LocationData | LocationState
 > {
   try {
     const coordinates = yield select(selectCoordinates);
-    const { latitude, longitude } = coordinates as locationState;
+    const { latitude, longitude } = coordinates as LocationState;
 
     if (!name && !country) {
       if (shouldFetchData(latitude, longitude, lat, lon)) {

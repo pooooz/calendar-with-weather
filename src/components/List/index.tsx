@@ -1,12 +1,7 @@
 import React from 'react';
 
 import { ColumnContainer, RowContainer } from './styled';
-
-interface ListProps<T> {
-  items: T[];
-  renderItem: (item: T) => React.ReactNode;
-  direction?: 'column' | 'row';
-}
+import { ListProps } from './interfaces';
 
 export function List<T>({
   items,

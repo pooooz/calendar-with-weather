@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { dateOptions, timeOptions } from './constants';
 import { DateString, Time } from './styled';
@@ -8,13 +8,17 @@ export const Clock = () => {
     new Date().toLocaleTimeString('en-US', timeOptions)
   );
 
+  const timerRef = useRef<NodeJS.Timer | null>(null);
+
   useEffect(() => {
-    const timerId = setInterval(() => {
+    timerRef.current = setInterval(() => {
       const date = new Date();
       setTime(date.toLocaleTimeString('en-US', timeOptions));
     }, 1000);
     return () => {
-      clearInterval(timerId);
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
     };
   });
 
